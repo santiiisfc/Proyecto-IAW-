@@ -30,7 +30,22 @@
         background-color: #f2f2f2;
         padding: 25px;
       }
+
+
+      table {
+        margin-bottom: 30px;
+
+
+      };
+
+      table tbody tr td {
+        padding: 10px 0px;
+        border: solid red 1px;
+
+      };
     </style>
+
+
   </head>
 
   <body>
@@ -52,13 +67,9 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
-            <li><a href="sofa.php">SOFÁS</a></li>
-            <li><a href="dormitorio.php">DORMITORIOS</a></li>
-            <li><a href="salon.php">SALÓN</a></li>
-            <li><a href="cocina.php">COCINA</a></li>
-            <li><a href="banio.php">BAÑO</a></li>
-            <li><a href="colchon.php">COLCHONES</a></li>
-            <li><a href="decoracion.php">DECORACIÓN</a></li>
+            <li><a href="producto.php">PRODUCTOS</a></li>
+            <li><a href="pedido.php">PEDIDOS</a></li>
+            <li><a href="usuario.php">USUARIOS</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
 
@@ -113,12 +124,7 @@
                 //VALID LOGIN. SETTING SESSION VARS
                 $_SESSION["user"]=$_POST["user"];
                 $_SESSION["rol"]=$r;
-                if($r=='admin'){
-                  header("Location: adminmain.php");
-                }else{
-                  header("Location: main.php");
-                }
-
+                header("Location: main.php");
               }
           } else {
             echo "Wrong Query";
@@ -166,69 +172,17 @@
 
     <div class="container">
       <div class="col-sm-12">
-        <div class="panel with-nav-tabs panel-default">
-          <div class="panel-heading">
-            <ul class="nav nav-tabs">
-              <li class="active"><a href="#tab1default" data-toggle="tab">Default 1</a></li>
-              <li><a href="#tab2default" data-toggle="tab">Default 2</a></li>
-            </ul>
-          </div>
 
-          <div class="panel-body">
-            <div class="tab-content">
-              <div class="tab-pane fade in active" id="tab1default">
+         <table class="table-striped  col-md-12" >
 
-
-                <?php
-        //FORM SUBMITTED
-
-          //CREATING THE CONNECTION
-          $connection = new mysqli("localhost", "root", "", "muebles");
-          //TESTING IF THE CONNECTION WAS RIGHT
-          if ($connection->connect_errno) {
-              printf("Connection failed: %s\n", $connection->connect_error);
-              exit();
-          }
-          //MAKING A SELECT QUERY
-          //Password coded with md5 at the database. Look for better options
-          $consulta="select * from producto;";
-          //Test if the query was correct
-          //SQL Injection Possible
-          //Check http://php.net/manual/es/mysqli.prepare.php for more security
-          if ($result = $connection->query($consulta)) {
-              //No rows returned
-              if ($result->num_rows===0) {
-                //echo "<script type=\"text/javascript\">alert('entra');</script>";
-              } else {
-                while($f=$result->fetch_object()){
-
-                     //echo "<script type=\"text/javascript\">alert('entra');</script>";
-
-
-            echo '<div class="col-sm-4">
-                  <div class="panel panel-primary">
-                    <div class="panel-heading">'.$f->NOMBRE.'</div>
-                    <div class="panel-body"><img src="'.$f->IMAGEN.'" class="img-responsive" style="width:100%" alt="Image"></div>
-                    <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-                  </div>
-                </div>';
-
-
-                }
-
-              }
-          }
-
-    ?>
-
-
-
-
-
-
-
-              </div>
-              <div class="tab-pane fade in" id="tab2default">
+           <thead>
+                   <tr>
+                     <th>NOMBRE USUARIO</th>
+                     <th>NOMBRE</th>
+                     <th>APELLIDOS</th>
+                     <th>CORREO</th>
+                     <th>ROL</th>
+                 </thead>
 
 
 
@@ -258,13 +212,16 @@
                      //echo "<script type=\"text/javascript\">alert('entra');</script>";
 
 
-            echo '<div class="col-sm-4">
-                  <div class="panel panel-primary">
-                    <div class="panel-heading">'.$f->NOMBRE.'</div>
-                    <div class="panel-body"><img src="'.$f->IMAGEN.'" class="img-responsive" style="width:100%" alt="Image"></div>
-                    <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-                  </div>
-                </div>';
+                     echo "<tr>";
+                               echo "<td>".$f->NOMBRE."</td>";
+                               echo "<td>".$f->COLOR."</td>";
+                               echo "<td>".$f->ANCHO."</td>";
+                               echo "<td>".$f->ALTO."</td>";
+                               echo "<td>".$f->PROFUNDO."</td>";
+                               echo "<td>".$f->PRECIO."</td>";
+                               echo "<td>".$f->PRECIO_DESCUENTO."</td>";
+                               echo "<td> <img src='".$f->IMAGEN."' height='42' width='42'/></td>";
+                               echo "</tr>";
 
 
                 }
@@ -274,11 +231,11 @@
 
     ?>
 
+</table>
 
-              </div>
-            </div>
-          </div>
-        </div>
+
+
+
       </div>
     </div>
 
