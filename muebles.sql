@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-01-2016 a las 09:03:12
+-- Tiempo de generación: 14-01-2016 a las 13:05:18
 -- Versión del servidor: 10.1.9-MariaDB
 -- Versión de PHP: 5.6.15
 
@@ -74,7 +74,6 @@ CREATE TABLE `producto` (
   `PRECIO` double(8,2) NOT NULL,
   `DESCUENTO` int(2) NOT NULL,
   `PRECIO_DESCUENTO` double(8,2) NOT NULL,
-  `DESCRIPCION` varchar(200) NOT NULL,
   `IMAGEN` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -82,9 +81,9 @@ CREATE TABLE `producto` (
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`IDPRODUCTO`, `NOMBRE`, `COLOR`, `ANCHO`, `ALTO`, `PROFUNDO`, `PRECIO`, `DESCUENTO`, `PRECIO_DESCUENTO`, `DESCRIPCION`, `IMAGEN`) VALUES
-(1, 'sofa', 'verde', 100, 100, 100, 23.00, 0, 0.00, 'dffasfasdfasdfas', './proyecto/imagenes/productos/sofa1.jpg'),
-(2, 'sofa', 'verde', 100, 100, 100, 23.00, 0, 0.00, 'dffasfasdfasdfas', './proyecto/imagenes/productos/sofa1.jpg');
+INSERT INTO `producto` (`IDPRODUCTO`, `NOMBRE`, `COLOR`, `ANCHO`, `ALTO`, `PROFUNDO`, `PRECIO`, `DESCUENTO`, `PRECIO_DESCUENTO`, `IMAGEN`) VALUES
+(1, 'sofa', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg'),
+(2, 'sofa2', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg');
 
 -- --------------------------------------------------------
 
@@ -94,21 +93,22 @@ INSERT INTO `producto` (`IDPRODUCTO`, `NOMBRE`, `COLOR`, `ANCHO`, `ALTO`, `PROFU
 
 CREATE TABLE `usuario` (
   `IDUSUARIO` int(4) NOT NULL,
-  `USUARIO` varchar(20) NOT NULL,
+  `USERNAME` varchar(20) NOT NULL,
   `PASSW` varchar(300) NOT NULL,
   `NOMBRE` varchar(20) NOT NULL,
   `APELLIDOS` varchar(20) NOT NULL,
-  `DNI` varchar(9) NOT NULL,
-  `ROL` varchar(5) DEFAULT NULL
+  `CORREO` varchar(30) NOT NULL,
+  `ROL` varchar(5) DEFAULT NULL,
+  `ESTADO` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`IDUSUARIO`, `USUARIO`, `PASSW`, `NOMBRE`, `APELLIDOS`, `DNI`, `ROL`) VALUES
-(1, 'malive', '81dc9bdb52d04dc20036dbd8313ed055', 'david', 'r', '11', 'admin'),
-(2, 'japan', '81dc9bdb52d04dc20036dbd8313ed055', 'japan', 'r', '113', 'user');
+INSERT INTO `usuario` (`IDUSUARIO`, `USERNAME`, `PASSW`, `NOMBRE`, `APELLIDOS`, `CORREO`, `ROL`, `ESTADO`) VALUES
+(1, 'malive', '81dc9bdb52d04dc20036dbd8313ed055', 'david', 'r', '11', 'admin', ''),
+(2, 'japan', '81dc9bdb52d04dc20036dbd8313ed055', 'j', 'jjjjjjjjjjjjjjjjjjj', '113@gmail.com', 'user', '');
 
 --
 -- Índices para tablas volcadas
@@ -140,13 +140,16 @@ ALTER TABLE `pedido`
 -- Indices de la tabla `producto`
 --
 ALTER TABLE `producto`
-  ADD PRIMARY KEY (`IDPRODUCTO`);
+  ADD PRIMARY KEY (`IDPRODUCTO`),
+  ADD UNIQUE KEY `NOMBRE` (`NOMBRE`);
 
 --
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`IDUSUARIO`);
+  ADD PRIMARY KEY (`IDUSUARIO`),
+  ADD UNIQUE KEY `USERNAME` (`USERNAME`),
+  ADD UNIQUE KEY `CORREO` (`CORREO`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
