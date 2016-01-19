@@ -10,6 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <style>
@@ -166,15 +167,53 @@
     <div class="container">
       <div class="col-sm-12">
 
+        <div class="row">
+          <form method="post" action="#">
+
+          <?php
+          $connection = new mysqli("localhost", "root", "", "muebles");
+          $consultafiltro = "SELECT TIPO FROM producto;";
+          $consultafiltro = $connection->query($consultafiltro);
+
+
+            echo "<select id='tipo'>";
+
+            while($f=$consultafiltro->fetch_object()){
+                      echo "<option value='$f->TIPO' selected>$f->TIPO</option>";
+                      <script>
+                        function loadDoc() {
+                          var xhttp = new XMLHttpRequest();
+                          xhttp.onreadystatechange = function() {
+                            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                              document.getElementById("demo").innerHTML = xhttp.responseText;
+                            }
+                          };
+                          xhttp.open("POST", "filtro.php", true);
+                          xhttp.send();
+                        }
+                        </script>
+                            }
+            echo "</select>";
+           ?>
+
+         </form>
+
+        </div>
+
          <table class="table-striped  col-md-12" >
 
            <thead>
                    <tr>
-                     <th>NOMBRE USUARIO</th>
+                     <th>TIPO</th>
                      <th>NOMBRE</th>
-                     <th>APELLIDOS</th>
-                     <th>CORREO</th>
-                     <th>ROL</th>
+                     <th>COLOR</th>
+                     <th>ANCHO</th>
+                     <th>ALTO</th>
+                     <th>PROFUNDO</th>
+                     <th>PRECIO</th>
+                     <th>DESCUENTO</th>
+                     <th>PRECIO DESCUENTO</th>
+                     <th>IMAGEN</th>
                  </thead>
 
 
@@ -183,6 +222,8 @@
         //FORM SUBMITTED
 
           //CREATING THE CONNECTION
+
+          //$tip=$_POST["tipo"];
           $connection = new mysqli("localhost", "root", "", "muebles");
           //TESTING IF THE CONNECTION WAS RIGHT
           if ($connection->connect_errno) {
@@ -191,7 +232,7 @@
           }
           //MAKING A SELECT QUERY
           //Password coded with md5 at the database. Look for better options
-          $consulta="select * from producto;";
+          $consulta="SELECT * from producto;";
           //Test if the query was correct
           //SQL Injection Possible
           //Check http://php.net/manual/es/mysqli.prepare.php for more security
@@ -206,12 +247,14 @@
 
 
                      echo "<tr>";
+                               echo "<td>".$f->TIPO."</td>";
                                echo "<td>".$f->NOMBRE."</td>";
                                echo "<td>".$f->COLOR."</td>";
                                echo "<td>".$f->ANCHO."</td>";
                                echo "<td>".$f->ALTO."</td>";
                                echo "<td>".$f->PROFUNDO."</td>";
                                echo "<td>".$f->PRECIO."</td>";
+                               echo "<td>".$f->DESCUENTO."</td>";
                                echo "<td>".$f->PRECIO_DESCUENTO."</td>";
                                echo "<td> <img src='".$f->IMAGEN."' height='42' width='42'/></td>";
                                echo "</tr>";
@@ -233,13 +276,9 @@
     </div>
 
 
-    <footer class="container-fluid text-center">
-      <p>Online Store Copyright</p>
-      <form class="form-inline">Get deals:
-        <input type="email" class="form-control" size="50" placeholder="Email Address">
-        <button type="button" class="btn btn-danger">Sign Up</button>
-      </form>
-    </footer>
+    <?php
+        include'./footer.php';
+      ?>
 
   </body>
 

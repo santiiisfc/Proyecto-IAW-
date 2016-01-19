@@ -10,6 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <style>
@@ -175,6 +176,7 @@
                      <th>APELLIDOS</th>
                      <th>CORREO</th>
                      <th>ROL</th>
+                     <th>ESTADO</th>
                  </thead>
 
 
@@ -211,6 +213,7 @@
                                echo "<td>".$f->APELLIDOS."</td>";
                                echo "<td>".$f->CORREO."</td>";
                                echo "<td>".$f->ROL."</td>";
+                               echo "<td>".$f->ESTADO."</td>";
                                echo "</tr>";
 
 
@@ -230,13 +233,9 @@
     </div>
 
 
-    <footer class="container-fluid text-center">
-      <p>Online Store Copyright</p>
-      <form class="form-inline">Get deals:
-        <input type="email" class="form-control" size="50" placeholder="Email Address">
-        <button type="button" class="btn btn-danger">Sign Up</button>
-      </form>
-    </footer>
+    <?php
+        include'./footer.php';
+      ?>
 
   </body>
 
