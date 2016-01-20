@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="./javascript/funcionesproductos.js"></script>
+
     <style>
       /* Remove the navbar's default rounded borders and increase the bottom margin */
 
@@ -165,40 +167,39 @@
     </nav>
 
     <div class="container">
-      <div class="col-sm-12">
+      <div class="col-md-12">
 
         <div class="row">
-          <form method="post" action="#">
+
+          <div class="col-md-4">
 
           <?php
           $connection = new mysqli("localhost", "root", "", "muebles");
-          $consultafiltro = "SELECT TIPO FROM producto;";
+          $consultafiltro = "SELECT distinct TIPO FROM producto;";
           $consultafiltro = $connection->query($consultafiltro);
 
 
-            echo "<select id='tipo'>";
+            echo "<select name='tipo' id='tableselect'>";
+            echo "<option value='todo' selected>Ver todo</option>";
 
             while($f=$consultafiltro->fetch_object()){
-                      echo "<option value='$f->TIPO' selected>$f->TIPO</option>";
-                      <script>
-                        function loadDoc() {
-                          var xhttp = new XMLHttpRequest();
-                          xhttp.onreadystatechange = function() {
-                            if (xhttp.readyState == 4 && xhttp.status == 200) {
-                              document.getElementById("demo").innerHTML = xhttp.responseText;
-                            }
-                          };
-                          xhttp.open("POST", "filtro.php", true);
-                          xhttp.send();
-                        }
-                        </script>
+                      echo "<option value='".$f->TIPO."'>".$f->TIPO."</option>";
+
                             }
             echo "</select>";
            ?>
 
-         </form>
+
 
         </div>
+
+        <div class="col-md-8">
+            <input type="text" name="filtro" id="busqueda" placeholder="busqueda" size="50"></input>
+        </div>
+
+      </div>
+
+        <div class="row" id="tabla">
 
          <table class="table-striped  col-md-12" >
 
@@ -214,6 +215,7 @@
                      <th>DESCUENTO</th>
                      <th>PRECIO DESCUENTO</th>
                      <th>IMAGEN</th>
+                     <th>EDITAR</th>
                  </thead>
 
 
@@ -232,7 +234,16 @@
           }
           //MAKING A SELECT QUERY
           //Password coded with md5 at the database. Look for better options
+
           $consulta="SELECT * from producto;";
+        //  $consulta="SELECT * from producto";
+
+
+          //if(isset($_POST["tipo"]) && $_POST["tipo"]!="todo"){
+          //  $consulta =$consulta." WHERE TIPO = '".$_POST["tipo"]."';";
+        //  }
+          //var_dump($consulta);
+        //  var_dump($_POST["tipo"]);
           //Test if the query was correct
           //SQL Injection Possible
           //Check http://php.net/manual/es/mysqli.prepare.php for more security
@@ -240,6 +251,7 @@
               //No rows returned
               if ($result->num_rows===0) {
                 //echo "<script type=\"text/javascript\">alert('entra');</script>";
+                echo $consulta;
               } else {
                 while($f=$result->fetch_object()){
 
@@ -257,6 +269,7 @@
                                echo "<td>".$f->DESCUENTO."</td>";
                                echo "<td>".$f->PRECIO_DESCUENTO."</td>";
                                echo "<td> <img src='".$f->IMAGEN."' height='42' width='42'/></td>";
+                               echo "<td><a href='editproducto.php?id=$f->IDPRODUCTO'>editar</a></td>";
                                echo "</tr>";
 
 
@@ -269,7 +282,7 @@
 
 </table>
 
-
+</div>
 
 
       </div>

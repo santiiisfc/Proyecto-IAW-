@@ -10,6 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <style>
@@ -58,16 +59,9 @@
 
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          </button>
-          <a class="navbar-brand" href="#">
-            <span class="glyphicon glyphicon-home"></span>
-          </a>
-        </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
-            <li><a href="producto.php">PRODUCTOS</a></li>
+            <li class="active"><a href="#">PRODUCTOS</a></li>
             <li><a href="pedido.php">PEDIDOS</a></li>
             <li><a href="usuario.php">USUARIOS</a></li>
           </ul>
@@ -173,15 +167,44 @@
     <div class="container">
       <div class="col-sm-12">
 
+        <div class="row">
+          <form method="post" action="producto.php">
+
+          <?php
+          $connection = new mysqli("localhost", "root", "", "muebles");
+          $consultafiltro = "SELECT TIPO FROM producto;";
+          $consultafiltro = $connection->query($consultafiltro);
+
+
+            echo "<select name='tipo'>";
+            echo "<option value='todo' selected>Ver todo</option>";
+
+            while($f=$consultafiltro->fetch_object()){
+                      echo "<option value='".$f->TIPO."' selected>".$f->TIPO."</option>";
+
+                            }
+            echo "</select>";
+           ?>
+           <input type="submit" name="send" value="enviar">
+
+         </form>
+
+        </div>
+
          <table class="table-striped  col-md-12" >
 
            <thead>
                    <tr>
-                     <th>NOMBRE USUARIO</th>
+                     <th>TIPO</th>
                      <th>NOMBRE</th>
-                     <th>APELLIDOS</th>
-                     <th>CORREO</th>
-                     <th>ROL</th>
+                     <th>COLOR</th>
+                     <th>ANCHO</th>
+                     <th>ALTO</th>
+                     <th>PROFUNDO</th>
+                     <th>PRECIO</th>
+                     <th>DESCUENTO</th>
+                     <th>PRECIO DESCUENTO</th>
+                     <th>IMAGEN</th>
                  </thead>
 
 
@@ -190,6 +213,8 @@
         //FORM SUBMITTED
 
           //CREATING THE CONNECTION
+
+          //$tip=$_POST["tipo"];
           $connection = new mysqli("localhost", "root", "", "muebles");
           //TESTING IF THE CONNECTION WAS RIGHT
           if ($connection->connect_errno) {
@@ -198,7 +223,16 @@
           }
           //MAKING A SELECT QUERY
           //Password coded with md5 at the database. Look for better options
-          $consulta="select * from usuario;";
+
+          $consultatodo="SELECT * from producto;";
+          $consulta="SELECT * from producto";
+
+
+          if(isset($_POST["tipo"])){
+            $consulta =$consulta." WHERE TIPO = '".$_POST["tipo"]."';";
+          }
+          //var_dump($consulta);
+        //  var_dump($_POST["tipo"]);
           //Test if the query was correct
           //SQL Injection Possible
           //Check http://php.net/manual/es/mysqli.prepare.php for more security
@@ -213,11 +247,16 @@
 
 
                      echo "<tr>";
-                               echo "<td>".$f->USERNAME."</td>";
+                               echo "<td>".$f->TIPO."</td>";
                                echo "<td>".$f->NOMBRE."</td>";
-                               echo "<td>".$f->APELLIDOS."</td>";
-                               echo "<td>".$f->CORREO."</td>";
-                               echo "<td>".$f->ROL."</td>";
+                               echo "<td>".$f->COLOR."</td>";
+                               echo "<td>".$f->ANCHO."</td>";
+                               echo "<td>".$f->ALTO."</td>";
+                               echo "<td>".$f->PROFUNDO."</td>";
+                               echo "<td>".$f->PRECIO."</td>";
+                               echo "<td>".$f->DESCUENTO."</td>";
+                               echo "<td>".$f->PRECIO_DESCUENTO."</td>";
+                               echo "<td> <img src='".$f->IMAGEN."' height='42' width='42'/></td>";
                                echo "</tr>";
 
 
@@ -237,13 +276,9 @@
     </div>
 
 
-    <footer class="container-fluid text-center">
-      <p>Online Store Copyright</p>
-      <form class="form-inline">Get deals:
-        <input type="email" class="form-control" size="50" placeholder="Email Address">
-        <button type="button" class="btn btn-danger">Sign Up</button>
-      </form>
-    </footer>
+    <?php
+        include'./footer.php';
+      ?>
 
   </body>
 

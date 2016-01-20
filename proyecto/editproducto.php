@@ -173,10 +173,11 @@
               printf("Connection failed: %s\n", $connection->connect_error);
               exit();
           }
+        //  $id=$_GET['id'];
           //MAKING A SELECT QUERY
           //Password coded with md5 at the database. Look for better options
-          $consulta="select * from usuario where
-          username='".$_SESSION["user"]."';";
+          $consulta="select * from producto where
+          IDPRODUCTO ='".$_GET['id']."';";
 
           //Test if the query was correct
           //SQL Injection Possible
@@ -192,18 +193,36 @@
 
 
                    echo '
-                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="usuario" value="'.$f->USERNAME.'" disabled > </td>
+                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="usuario" value="'.$f->NOMBRE.'" disabled > </td>
                         </tr>
                         <tr>
-                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="passw" name="passw" value='.$f->PASSW.' ></td>
+                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="passw" name="passw" value='.$f->COLOR.' ></td>
 
-                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="nombre" value="'.$f->NOMBRE.'"> </td>
+                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="nombre" value="'.$f->ANCHO.'"> </td>
                         </tr>
                         <tr>
-                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="apellidos" value="'.$f->APELLIDOS.'"></td>
+                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="apellidos" value="'.$f->ALTO.'"></td>
                         </tr>
                         <tr>
-                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="email" name="correo" value="'.$f->CORREO.'"> </td>
+                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="correo" value="'.$f->PROFUNDO.'"> </td>
+                        </tr>
+                        <tr>
+                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="correo" value="'.$f->PRECIO.'"> </td>
+                        </tr>
+                        <tr>
+                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="correo" value="'.$f->DESCUENTO.'"> </td>
+                        </tr>
+                        <tr>
+                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="correo" value="'.$f->PRECIO_DESCUENTO.'"> </td>
+                        </tr>
+                        <tr>
+                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="correo" value="'.$f->IMAGEN.'"> </td>
+                        </tr>
+                        <tr>
+                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="correo" value="'.$f->TIPO.'"> </td>
+                        </tr>
+                        <tr>
+                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="correo" value="'.$f->ESTADO.'"> </td>
                         </tr>
                     </table>
                     </fieldset>
