@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-01-2016 a las 13:05:18
+-- Tiempo de generación: 21-01-2016 a las 13:16:43
 -- Versión del servidor: 10.1.9-MariaDB
 -- Versión de PHP: 5.6.15
 
@@ -74,16 +74,32 @@ CREATE TABLE `producto` (
   `PRECIO` double(8,2) NOT NULL,
   `DESCUENTO` int(2) NOT NULL,
   `PRECIO_DESCUENTO` double(8,2) NOT NULL,
-  `IMAGEN` varchar(500) NOT NULL
+  `IMAGEN` varchar(500) NOT NULL,
+  `TIPO` varchar(30) NOT NULL,
+  `ESTADO` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `producto`
 --
 
-INSERT INTO `producto` (`IDPRODUCTO`, `NOMBRE`, `COLOR`, `ANCHO`, `ALTO`, `PROFUNDO`, `PRECIO`, `DESCUENTO`, `PRECIO_DESCUENTO`, `IMAGEN`) VALUES
-(1, 'sofa', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg'),
-(2, 'sofa2', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg');
+INSERT INTO `producto` (`IDPRODUCTO`, `NOMBRE`, `COLOR`, `ANCHO`, `ALTO`, `PROFUNDO`, `PRECIO`, `DESCUENTO`, `PRECIO_DESCUENTO`, `IMAGEN`, `TIPO`, `ESTADO`) VALUES
+(1, 'sofa', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'sofas', 'si'),
+(2, 'sofa2', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'dormitorios', 'no'),
+(4, 'adas', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'sofas', 'no'),
+(5, 'fff', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'sofas', 'si'),
+(6, 'ggg', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'sofas', ''),
+(7, 'gggggggggg', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'sofas', ''),
+(8, 'qwe', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'dormitorios', ''),
+(9, 'jkjk', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'sofas', ''),
+(10, 'kjk', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'sofas', ''),
+(11, 'hhhh', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'sofas', ''),
+(12, 'yuuu', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'sofas', ''),
+(13, 'tytyty', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'sofas', ''),
+(14, 'tyrtyyrtyrtyrtyrt', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'sofas', ''),
+(15, 'ññhjk', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'sofas', ''),
+(16, 'kljkljfgh', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'sofas', ''),
+(17, 'sterw', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'dormitorios', '');
 
 -- --------------------------------------------------------
 
@@ -107,8 +123,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`IDUSUARIO`, `USERNAME`, `PASSW`, `NOMBRE`, `APELLIDOS`, `CORREO`, `ROL`, `ESTADO`) VALUES
-(1, 'malive', '81dc9bdb52d04dc20036dbd8313ed055', 'david', 'r', '11', 'admin', ''),
-(2, 'japan', '81dc9bdb52d04dc20036dbd8313ed055', 'j', 'jjjjjjjjjjjjjjjjjjj', '113@gmail.com', 'user', '');
+(1, 'malive', '81dc9bdb52d04dc20036dbd8313ed055', 'david', 'r', '11', 'admin', 'si'),
+(2, 'japan', '81dc9bdb52d04dc20036dbd8313ed055', 'j', 'jjjjjjjjjjjjjjjjjjj', '113@gmail.com', 'user', 'si');
 
 --
 -- Índices para tablas volcadas
@@ -169,7 +185,7 @@ ALTER TABLE `pedido`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `IDPRODUCTO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IDPRODUCTO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
