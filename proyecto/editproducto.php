@@ -1,5 +1,6 @@
 <?php
   session_start();
+  ob_start();
 ?>
 
 <!DOCTYPE html>
@@ -47,13 +48,9 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="sofa.php">SOFÁS</a></li>
-        <li><a href="dormitorio.php">DORMITORIOS</a></li>
-        <li><a href="salon.php">SALÓN</a></li>
-        <li><a href="cocina.php">COCINA</a></li>
-        <li><a href="banio.php">BAÑO</a></li>
-        <li><a href="colchon.php">COLCHONES</a></li>
-        <li><a href="decoracion.php">DECORACIÓN</a></li>
+        <li class="active"><a href="producto.php">PRODUCTOS</a></li>
+        <li><a href="pedido.php">PEDIDOS</a></li>
+        <li><a href="usuario.php">USUARIOS</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
 
@@ -193,36 +190,37 @@
 
 
                    echo '
-                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="usuario" value="'.$f->NOMBRE.'" disabled > </td>
+                            <td><input type="text" name="nom" value="'.$f->NOMBRE.'"> </td>
                         </tr>
                         <tr>
-                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="passw" name="passw" value='.$f->COLOR.' ></td>
-
-                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="nombre" value="'.$f->ANCHO.'"> </td>
+                            <td><input type="passw" name="col" value='.$f->COLOR.' ></td>
                         </tr>
                         <tr>
-                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="apellidos" value="'.$f->ALTO.'"></td>
+                            <td><input type="text" name="anc" value="'.$f->ANCHO.'"> </td>
                         </tr>
                         <tr>
-                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="correo" value="'.$f->PROFUNDO.'"> </td>
+                            <td><input type="text" name="alt" value="'.$f->ALTO.'"></td>
                         </tr>
                         <tr>
-                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="correo" value="'.$f->PRECIO.'"> </td>
+                            <td><input type="text" name="pro" value="'.$f->PROFUNDO.'"> </td>
                         </tr>
                         <tr>
-                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="correo" value="'.$f->DESCUENTO.'"> </td>
+                            <td><input type="text" name="pre" value="'.$f->PRECIO.'"> </td>
                         </tr>
                         <tr>
-                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="correo" value="'.$f->PRECIO_DESCUENTO.'"> </td>
+                            <td><input type="text" name="des" value="'.$f->DESCUENTO.'"> </td>
                         </tr>
                         <tr>
-                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="correo" value="'.$f->IMAGEN.'"> </td>
+                            <td><input type="text" name="predes" value="'.$f->PRECIO_DESCUENTO.'"> </td>
                         </tr>
                         <tr>
-                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="correo" value="'.$f->TIPO.'"> </td>
+                            <td><input type="text" name="imagen" value="'.$f->IMAGEN.'"> </td>
                         </tr>
                         <tr>
-                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="correo" value="'.$f->ESTADO.'"> </td>
+                            <td><input type="text" name="tipo" value="'.$f->TIPO.'"> </td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="est" value="'.$f->ESTADO.'"> </td>
                         </tr>
                     </table>
                     </fieldset>
@@ -249,13 +247,20 @@
       <?php endif ?>
 
                           <?php
-if (isset($_POST["usuario"])) {
+if (isset($_POST["nom"])) {
 
-                        $usuario = $_POST['usuario'];
-                        $passw = $_POST['passw'];
-                        $nombre = $_POST['nombre'];
-                        $apellidos= $_POST['apellidos'];
-                        $correo = $_POST['correo'];
+                        $nombre = $_POST['nom'];
+                        $color = $_POST['col'];
+                        $ancho = $_POST['anc'];
+                        $alto= $_POST['alt'];
+                        $profundo = $_POST['pro'];
+                        $precio = $_POST['pre'];
+                        $descuento = $_POST['des'];
+                        $preciodescuento = $_POST['predes'];
+                        $imagen = $_POST['imagen'];
+                        $tipo = $_POST['tipo'];
+                        $estado = $_POST['est'];
+
 
 
                         $connection = new mysqli("localhost","root","","muebles");
@@ -263,16 +268,16 @@ if (isset($_POST["usuario"])) {
                                         printf("Connection failed: %s\n", $mysqli->connect_error);
                                         exit();
                                     }
-                        $consulta="UPDATE USUARIO SET PASSW='".$passw."', NOMBRE='".$nombre."', APELLIDOS='".$apellidos."' ,CORREO='".$correo."' WHERE USERNAME = '".$usuario."'";
+                        $consulta="UPDATE PRODUCTO SET NOMBRE='".$nombre."', COLOR='".$color."', ANCHO='".$ancho."' ,ALTO='".$alto."', PROFUNDO ='".$profundo."', PRECIO= '".$precio."', DESCUENTO='".$descuento."', PRECIO_DESCUENTO = '".$preciodescuento."', IMAGEN='".$imagen."', TIPO ='".$tipo."', ESTADO='".$estado."' WHERE NOMBRE  = '".$nombre."'";
 
-                                echo $consulta;
+                               echo $consulta;
                         if($connection->query($consulta)==true){
                             echo "perfe";
                         }else{
                             echo $connection->error;
                         }
                         unset($connection);
-                       // header('Location: perfil.php');
+                       header('Location: producto.php');
 
 }
                     ?>
@@ -291,3 +296,6 @@ if (isset($_POST["usuario"])) {
 
 </body>
 </html>
+<?php
+ob_end_flush();
+?>

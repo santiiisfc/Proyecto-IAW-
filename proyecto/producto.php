@@ -1,10 +1,8 @@
 <?php
   session_start();
 ?>
-
   <!DOCTYPE html>
   <html lang="en">
-
   <head>
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
@@ -14,41 +12,26 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="./javascript/funcionesproductos.js"></script>
-
     <style>
-      /* Remove the navbar's default rounded borders and increase the bottom margin */
-
       .navbar {
         margin-bottom: 50px;
         border-radius: 0;
       }
-      /* Remove the jumbotron's default bottom margin */
-
       .jumbotron {
         margin-bottom: 0;
       }
-      /* Add a gray background color and some padding to the footer */
-
       footer {
         background-color: #f2f2f2;
         padding: 25px;
       }
-
-
       table {
         margin-bottom: 30px;
-
-
       };
-
       table tbody tr td {
         padding: 10px 0px;
         border: solid red 1px;
-
       };
     </style>
-
-
   </head>
 
   <body>
@@ -87,40 +70,28 @@
                   <a href="registro.php" class="btn btn-success" role="button">Registro</a>
                 </form>
 
-
-
                 <?php
-        //FORM SUBMITTED
         if (isset($_POST["user"])) {
-          //CREATING THE CONNECTION
           $connection = new mysqli("localhost", "root", "", "muebles");
-          //TESTING IF THE CONNECTION WAS RIGHT
           if ($connection->connect_errno) {
               printf("Connection failed: %s\n", $connection->connect_error);
               exit();
           }
-          //MAKING A SELECT QUERY
-          //Password coded with md5 at the database. Look for better options
+
           $consulta="select * from usuario where
           username='".$_POST["user"]."' and passw=md5('".$_POST["password"]."');";
-          //Test if the query was correct
-          //SQL Injection Possible
-          //Check http://php.net/manual/es/mysqli.prepare.php for more security
+
           if ($result = $connection->query($consulta)) {
-              //No rows returned
               if ($result->num_rows===0) {
-                //echo "<script type=\"text/javascript\">alert('entra');</script>";
               } else {
                 while($f=$result->fetch_object()){
-
                   $r=$f->ROL;
 
 
                 }
-                //VALID LOGIN. SETTING SESSION VARS
                 $_SESSION["user"]=$_POST["user"];
                 $_SESSION["rol"]=$r;
-                header("Location: main.php");
+                //header("Location: main.php");
               }
           } else {
             echo "Wrong Query";
@@ -184,25 +155,21 @@
 
             while($f=$consultafiltro->fetch_object()){
                       echo "<option value='".$f->TIPO."'>".$f->TIPO."</option>";
-
                             }
             echo "</select>";
            ?>
 
-
-
         </div>
-
-        <div class="col-md-8">
+        <div class="col-md-4">
             <input type="text" name="filtro" id="busqueda" placeholder="busqueda" size="50"></input>
         </div>
-
+        <div class="col-md-4" >
+          <a class="btn btn-primary" href="addpro.php" role="button">Añadir</a>
+        </div>
       </div>
 
         <div class="row" id="tabla">
-
-         <table class="table-striped  col-md-12" >
-
+         <table class="table  col-md-12" >
            <thead>
                    <tr>
                      <th>TIPO</th>
@@ -215,69 +182,62 @@
                      <th>DESCUENTO</th>
                      <th>PRECIO DESCUENTO</th>
                      <th>IMAGEN</th>
+                     <th>ESTADO</th>
                      <th>EDITAR</th>
                  </thead>
 
 
 
                 <?php
-        //FORM SUBMITTED
-
-          //CREATING THE CONNECTION
-
-          //$tip=$_POST["tipo"];
           $connection = new mysqli("localhost", "root", "", "muebles");
-          //TESTING IF THE CONNECTION WAS RIGHT
           if ($connection->connect_errno) {
               printf("Connection failed: %s\n", $connection->connect_error);
               exit();
           }
-          //MAKING A SELECT QUERY
-          //Password coded with md5 at the database. Look for better options
 
           $consulta="SELECT * from producto;";
-        //  $consulta="SELECT * from producto";
 
-
-          //if(isset($_POST["tipo"]) && $_POST["tipo"]!="todo"){
-          //  $consulta =$consulta." WHERE TIPO = '".$_POST["tipo"]."';";
-        //  }
-          //var_dump($consulta);
-        //  var_dump($_POST["tipo"]);
-          //Test if the query was correct
-          //SQL Injection Possible
-          //Check http://php.net/manual/es/mysqli.prepare.php for more security
           if ($result = $connection->query($consulta)) {
-              //No rows returned
               if ($result->num_rows===0) {
-                //echo "<script type=\"text/javascript\">alert('entra');</script>";
                 echo $consulta;
               } else {
                 while($f=$result->fetch_object()){
+                       if($f->ESTADO == "no"){
+                       echo "<tr class='danger' >";
+                                 echo "<td>".$f->TIPO."</td>";
+                                 echo "<td>".$f->NOMBRE."</td>";
+                                 echo "<td>".$f->COLOR."</td>";
+                                 echo "<td>".$f->ANCHO."</td>";
+                                 echo "<td>".$f->ALTO."</td>";
+                                 echo "<td>".$f->PROFUNDO."</td>";
+                                 echo "<td>".$f->PRECIO."</td>";
+                                 echo "<td>".$f->DESCUENTO."</td>";
+                                 echo "<td>".$f->PRECIO_DESCUENTO."</td>";
+                                 echo "<td> <img src='".$f->IMAGEN."' height='42' width='42'/></td>";
+                                 echo "<td>".$f->ESTADO."</td>";
+                                 echo "<td><a href='editproducto.php?id=$f->IDPRODUCTO'>editar</a></td>";
+                                 echo "</tr>";
 
-                     //echo "<script type=\"text/javascript\">alert('entra');</script>";
+                     }else{
 
-
-                     echo "<tr>";
-                               echo "<td>".$f->TIPO."</td>";
-                               echo "<td>".$f->NOMBRE."</td>";
-                               echo "<td>".$f->COLOR."</td>";
-                               echo "<td>".$f->ANCHO."</td>";
-                               echo "<td>".$f->ALTO."</td>";
-                               echo "<td>".$f->PROFUNDO."</td>";
-                               echo "<td>".$f->PRECIO."</td>";
-                               echo "<td>".$f->DESCUENTO."</td>";
-                               echo "<td>".$f->PRECIO_DESCUENTO."</td>";
-                               echo "<td> <img src='".$f->IMAGEN."' height='42' width='42'/></td>";
-                               echo "<td><a href='editproducto.php?id=$f->IDPRODUCTO'>editar</a></td>";
-                               echo "</tr>";
-
-
+                       echo "<tr>";
+                                 echo "<td>".$f->TIPO."</td>";
+                                 echo "<td>".$f->NOMBRE."</td>";
+                                 echo "<td>".$f->COLOR."</td>";
+                                 echo "<td>".$f->ANCHO."</td>";
+                                 echo "<td>".$f->ALTO."</td>";
+                                 echo "<td>".$f->PROFUNDO."</td>";
+                                 echo "<td>".$f->PRECIO."</td>";
+                                 echo "<td>".$f->DESCUENTO."</td>";
+                                 echo "<td>".$f->PRECIO_DESCUENTO."</td>";
+                                 echo "<td> <img src='".$f->IMAGEN."' height='42' width='42'/></td>";
+                                 echo "<td>".$f->ESTADO."</td>";
+                                 echo "<td><a href='editproducto.php?id=$f->IDPRODUCTO'>editar</a></td>";
+                                 echo "</tr>";
+                  }
                 }
-
               }
           }
-
     ?>
 
 </table>
