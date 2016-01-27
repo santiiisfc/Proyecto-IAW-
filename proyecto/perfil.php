@@ -1,5 +1,6 @@
 <?php
   session_start();
+  ob_start();
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +36,10 @@
 <div class="jumbotron">
   <div class="container text-center">
     <h1>MUEBLES ELI</h1>
+    <div class="alert alert-danger hidden" style="width:80%;margin: 0 auto;position:relative;top:-20px;height:60px;" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong id="alert_msg">Success! You have been signed in successfully! </strong>
+</div>
   </div>
 </div>
 
@@ -189,27 +194,45 @@
                                                                   //echo "<script type=\"text/javascript\">alert('entra');</script>";
 
                 while($f=$result->fetch_object()){
+                  //echo "<script type=\"text/javascript\">alert('".$f->ESTADO."');</script>";
+
+                    $si=$f->ESTADO;
+                    $no=$f->ESTADO;
+                  echo '
+                           <td><input type="text" name="use" value="'.$f->USERNAME.'"> </td>
+                       </tr>
+                       <tr>
+                           <td><input type="passw" name="nom" value='.$f->NOMBRE.' ></td>
+                       </tr>
+                       <tr>
+                           <td><input type="text" name="ape" value="'.$f->APELLIDOS.'"> </td>
+                       </tr>
+                       <tr>
+                           <td><input type="text" name="cor" value="'.$f->CORREO.'"></td>
+                       </tr>';
+                    echo '  <tr>  ESTADO:';
+                        if($f->ESTADO=="si"){
+                          echo "<script type=\"text/javascript\">alert('entra');</script>";
+
+                          echo "<input type='radio' name='est'
+                          value='si' checked='checked'>SI
+                          <input type='radio' name='est'
+                          value='no'>NO";
+                        }else{
+                          echo "<input type='radio' name='est'
+                          value='si' >SI
+                          <input type='radio' name='est'
+                          value='no' checked='checked'>NO";
+
+                        }
+                        echo ' </tr>';
 
 
-                   echo '
-                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="usuario" value="'.$f->USERNAME.'" disabled > </td>
-                        </tr>
-                        <tr>
-                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="passw" name="passw" value='.$f->PASSW.' ></td>
-
-                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="nombre" value="'.$f->NOMBRE.'"> </td>
-                        </tr>
-                        <tr>
-                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="text" name="apellidos" value="'.$f->APELLIDOS.'"></td>
-                        </tr>
-                        <tr>
-                            <td><span class="glyphicon glyphicon-envelope"></span> <input type="email" name="correo" value="'.$f->CORREO.'"> </td>
-                        </tr>
-                    </table>
-                    </fieldset>
-                    <br>
-                    <input type="submit" name="send" value="enviar">
-              </form>';
+              echo'    </table>
+                   </fieldset>
+                   <br>
+                   <input type="submit" name="send" value="enviar">
+                  </form>';
 
 
                 }
@@ -230,13 +253,16 @@
       <?php endif ?>
 
                           <?php
-if (isset($_POST["usuario"])) {
+if (isset($_POST["use"])) {
 
-                        $usuario = $_POST['usuario'];
-                        $passw = $_POST['passw'];
-                        $nombre = $_POST['nombre'];
-                        $apellidos= $_POST['apellidos'];
-                        $correo = $_POST['correo'];
+                      $usuario = $_POST['use'];
+                        $nombre = $_POST['nom'];
+                        $apellidos= $_POST['ape'];
+                        $correo = $_POST['cor'];
+                        $estado = $_POST['est'];
+
+                        //echo "<script type=\"text/javascript\">alert('entra');</script>";
+
 
 
                         $connection = new mysqli("localhost","root","","muebles");
@@ -244,17 +270,18 @@ if (isset($_POST["usuario"])) {
                                         printf("Connection failed: %s\n", $mysqli->connect_error);
                                         exit();
                                     }
-                        $consulta="UPDATE USUARIO SET PASSW='".$passw."', NOMBRE='".$nombre."', APELLIDOS='".$apellidos."' ,CORREO='".$correo."' WHERE USERNAME = '".$usuario."'";
+                        $consulta="UPDATE USUARIO SET NOMBRE='".$nombre."', APELLIDOS='".$apellidos."' ,CORREO='".$correo."' ,ESTADO='".$estado."' WHERE USERNAME = '".$usuario."'";
 
-                                echo $consulta;
-                        if($connection->query($consulta)==true){
-                            echo "perfe";
-                        }else{
-                            echo $connection->error;
-                        }
-                        unset($connection);
-                       // header('Location: perfil.php');
-
+//                        echo $consulta;
+                 if($connection->query($consulta)==true){
+                     echo "perfe";
+                 }else{
+                     echo $connection->error;
+                 }
+                 unset($connection);
+                 echo '<script language="javascript">$("#alert_msg").text("modificado");$(".alert").toggleClass("hidden").fadeIn(1000); window.setTimeout(function() {$(".alert").fadeTo(500, 0).slideUp(500, function(){
+$(this).remove();});}, 3000);</script>';
+                // header('Location: main.php');
 }
                     ?>
 
@@ -272,3 +299,7 @@ if (isset($_POST["usuario"])) {
 
 </body>
 </html>
+
+<?php
+ob_end_flush();
+?>

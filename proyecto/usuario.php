@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="./javascript/funcionesusuarios.js"></script>
+
     <style>
       /* Remove the navbar's default rounded borders and increase the bottom margin */
 
@@ -165,9 +167,39 @@
     </nav>
 
     <div class="container">
-      <div class="col-sm-12">
+      <div class="col-md-12">
 
-         <table class="table-striped  col-md-12" >
+        <div class="row">
+
+          <div class="col-md-4">
+
+          <?php
+          $connection = new mysqli("localhost", "root", "", "muebles");
+          $consultafiltro = "SELECT distinct ROL FROM usuario;";
+          $consultafiltro = $connection->query($consultafiltro);
+
+
+            echo "<select name='rol' id='tableusu'>";
+            echo "<option value='todo' selected>Ver todo</option>";
+
+            while($f=$consultafiltro->fetch_object()){
+
+                      echo "<option value='".$f->ROL."'>".$f->ROL."</option>";
+                            }
+            echo "</select>";
+           ?>
+
+        </div>
+        <div class="col-md-4">
+            <input type="text" name="filtro" id="busquedausu" placeholder="busqueda" size="50"></input>
+        </div>
+        <div class="col-md-4" >
+          <a class="btn btn-primary" href="addusu.php" role="button">Añadir</a>
+        </div>
+      </div>
+
+        <div class="row" id="tablausuario">
+         <table class="table  col-md-12" >
 
            <thead>
                    <tr>
@@ -204,17 +236,34 @@
               } else {
                 while($f=$result->fetch_object()){
 
+                     if($f->ESTADO == "no"){
+
+                       echo "<tr class='danger'>";
+                                 echo "<td>".$f->USERNAME."</td>";
+                                 echo "<td>".$f->NOMBRE."</td>";
+                                 echo "<td>".$f->APELLIDOS."</td>";
+                                 echo "<td>".$f->CORREO."</td>";
+                                 echo "<td>".$f->ROL."</td>";
+                                 echo "<td>".$f->ESTADO."</td>";
+                                 echo "</tr>";
+                     }else{
+
+                       echo "<tr>";
+                                 echo "<td>".$f->USERNAME."</td>";
+                                 echo "<td>".$f->NOMBRE."</td>";
+                                 echo "<td>".$f->APELLIDOS."</td>";
+                                 echo "<td>".$f->CORREO."</td>";
+                                 echo "<td>".$f->ROL."</td>";
+                                 echo "<td>".$f->ESTADO."</td>";
+                                 echo "</tr>";
+
+
+                     }
+
                      //echo "<script type=\"text/javascript\">alert('entra');</script>";
 
 
-                     echo "<tr>";
-                               echo "<td>".$f->USERNAME."</td>";
-                               echo "<td>".$f->NOMBRE."</td>";
-                               echo "<td>".$f->APELLIDOS."</td>";
-                               echo "<td>".$f->CORREO."</td>";
-                               echo "<td>".$f->ROL."</td>";
-                               echo "<td>".$f->ESTADO."</td>";
-                               echo "</tr>";
+
 
 
                 }
@@ -226,6 +275,7 @@
 
 </table>
 
+</div>
 
 
 
