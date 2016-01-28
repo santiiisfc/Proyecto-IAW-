@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="./javascript/aniadircesta.js"></script>
+
   <style>
     /* Remove the navbar's default rounded borders and increase the bottom margin */
     .navbar {
@@ -137,7 +139,8 @@
 
             ?>
               <?php if ($_SESSION["rol"]=="user") : ?>
-                <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                <li><a href="#" id="cesta"><span class="glyphicon glyphicon-shopping-cart"></span><p style="float:right; margin-left:10px"> </p> </a></li>
+
               <?php else: ?>
 
               <?php endif ?>
@@ -150,21 +153,13 @@
 
 <div class="container">
   <div class="col-sm-12">
-    <div class="panel with-nav-tabs panel-default">
-        <div class="panel-heading">
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="#tab1default" data-toggle="tab">Default 1</a></li>
-                <li><a href="#tab2default" data-toggle="tab">Default 2</a></li>
-            </ul>
-        </div>
 
-          <div class="panel-body">
-            <div class="tab-content">
-              <div class="tab-pane fade in active" id="tab1default">
-
+    <table>
 
                <?php
         //FORM SUBMITTED
+
+        $id= $_POST['idpro'];
 
           //CREATING THE CONNECTION
           $connection = new mysqli("localhost", "root", "", "muebles");
@@ -175,7 +170,7 @@
           }
           //MAKING A SELECT QUERY
           //Password coded with md5 at the database. Look for better options
-          $consulta="select * from producto;";
+          $consulta="SELECT * FROM producto WHERE IDPRODUCTO = $id;";
           //Test if the query was correct
           //SQL Injection Possible
           //Check http://php.net/manual/es/mysqli.prepare.php for more security
@@ -189,18 +184,45 @@
                      //echo "<script type=\"text/javascript\">alert('entra');</script>";
 
 
-            echo '<div class="col-sm-4">
-                  <div class="panel panel-primary">
-                    <div class="panel-heading">'.$f->NOMBRE.'</div>
-                    <div class="panel-body"> <img src="'.$f->IMAGEN.'" class="img-responsive" style="width:100%" alt="Image"> </div>
-                    <form action="./detallespro.php" method="post"><input type="hidden" id="idpro" name="idpro" value="'.$f->IDPRODUCTO.'"> <div class="panel-footer"><button type="submit" class="btn btn-danger" ><span class="glyphicon glyphicon-shopping-cart white"></span> '.$f->PRECIO.'€</button></form>
+          echo '     <td>"'.$f->NOMBRE.'"</td>
+                 </tr>
+                 <tr>
+                     <td>"'.$f->COLOR.'" </td>
+                 </tr>
+                 <tr>
+                     <td>'.$f->ANCHO.' </td>
+                 </tr>
+                 <tr>
+                     <td>'.$f->ALTO.'</td>
+                 </tr>
+                 <tr>
+                     <td>'.$f->PROFUNDO.'</td>
+                 </tr>
+                 <tr>
+                     <td>'.$f->PRECIO.' </td>
+                 </tr>
+                 <tr>
+                     <td>'.$f->DESCUENTO.' </td>
+                 </tr>
+                 <tr>
+                     <td>'.$f->PRECIO_DESCUENTO.'</td>
+                 </tr>
+                 <tr>
+                     <td>"'.$f->IMAGEN.'" </td>
+                 </tr>
+                 <tr>
+                     <td>"'.$f->TIPO.'" </td>
+                 </tr>
+                 <tr>
+                     <td>"'.$f->ESTADO.'" </td>
+                 </tr>
 
-                  </div>
+                 <tr>
+              <button  class="btn btn-danger" onclick="insertarProductoCesta("'.$f->IDPRODUCTO.'")" >Añadir cesta</button>
 
-                  </div>
-                </div>';
+                 </tr>';
 
-//  <div class="panel-footer">'.$f->PRECIO.' €</div>
+
                 }
 
               }
@@ -210,21 +232,11 @@
 
 
 
+ </table>
 
 
 
 
-              </div>
-               <div class="tab-pane fade in" id="tab2default">
-
-
-
-
-
-            </div>
-          </div>
-    </div>
-  </div>
 </div>
 </div>
 
