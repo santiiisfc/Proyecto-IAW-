@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-01-2016 a las 13:16:43
+-- Tiempo de generación: 29-01-2016 a las 14:37:22
 -- Versión del servidor: 10.1.9-MariaDB
 -- Versión de PHP: 5.6.15
 
@@ -45,6 +45,23 @@ CREATE TABLE `lineapedido` (
   `CANTIDAD` int(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `lineapedido`
+--
+
+INSERT INTO `lineapedido` (`IDLINEAPEDIDO`, `IDPEDIDO`, `IDPRODUCTO`, `CANTIDAD`) VALUES
+(3, 1, 1, 16),
+(4, 1, 2, 3),
+(5, 2, 1, 1),
+(6, 2, 2, 2),
+(7, 2, 6, 2),
+(8, 2, 8, 2),
+(9, 2, 11, 2),
+(10, 3, 1, 2),
+(11, 3, 5, 1),
+(12, 3, 6, 1),
+(13, 3, 12, 5);
+
 -- --------------------------------------------------------
 
 --
@@ -57,6 +74,15 @@ CREATE TABLE `pedido` (
   `FECHA_PEDIDO` date NOT NULL,
   `IMPORTE` double(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `pedido`
+--
+
+INSERT INTO `pedido` (`IDPEDIDO`, `IDUSUARIO`, `FECHA_PEDIDO`, `IMPORTE`) VALUES
+(1, 2, '2016-01-29', 245.00),
+(2, 2, '2016-01-29', 195.00),
+(3, 2, '2016-01-29', 183.00);
 
 -- --------------------------------------------------------
 
@@ -84,13 +110,13 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`IDPRODUCTO`, `NOMBRE`, `COLOR`, `ANCHO`, `ALTO`, `PROFUNDO`, `PRECIO`, `DESCUENTO`, `PRECIO_DESCUENTO`, `IMAGEN`, `TIPO`, `ESTADO`) VALUES
-(1, 'sofa', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'sofas', 'si'),
+(1, 'sofa', 'rosa', 11, 22, 3333333, 11.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'sofas', 'no'),
 (2, 'sofa2', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'dormitorios', 'no'),
 (4, 'adas', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'sofas', 'no'),
 (5, 'fff', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'sofas', 'si'),
 (6, 'ggg', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'sofas', ''),
 (7, 'gggggggggg', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'sofas', ''),
-(8, 'qwe', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'dormitorios', ''),
+(8, 'qwe', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'dormitorios', 'no'),
 (9, 'jkjk', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'sofas', ''),
 (10, 'kjk', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'sofas', ''),
 (11, 'hhhh', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'sofas', ''),
@@ -99,7 +125,15 @@ INSERT INTO `producto` (`IDPRODUCTO`, `NOMBRE`, `COLOR`, `ANCHO`, `ALTO`, `PROFU
 (14, 'tyrtyyrtyrtyrtyrt', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'sofas', ''),
 (15, 'ññhjk', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'sofas', ''),
 (16, 'kljkljfgh', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'sofas', ''),
-(17, 'sterw', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'dormitorios', '');
+(17, 'sterw', 'verde', 100, 100, 100, 23.00, 0, 0.00, './imagenes/productos/sofa1.jpg', 'dormitorios', ''),
+(18, 'camadavid', 'azul', 90, 190, 30, 300.00, 12, 33.00, '', 'colchones', 'no'),
+(19, 'japan', 'verde', 1, 1, 3, 22.00, 0, 0.00, '', 'persona', 'no'),
+(20, 'aaaa', 'aaaaaaa', 21, 212, 1212, 21.00, 12, 21.00, '', 'ssssssss', 'ssssss'),
+(21, 'ss', 'dasd', 33, 2, 32, 23.00, 1, 1.00, '', 'da', 'ad'),
+(22, 'q', 'q', 2, 2, 3, 4.00, 1, 3.00, '', '33', '22'),
+(23, 'w', 'w', 3, 3, 3, 3.00, 3, 3.00, '', 'd', 'd'),
+(24, 'd', 's', 2, 3, 2, 2.00, 2, 2.00, '', 'd', 'd'),
+(25, 'sds', 'f', 2, 23, 2, 23.00, 12, 312.00, '', 'sadfsd', 'sfdf');
 
 -- --------------------------------------------------------
 
@@ -124,7 +158,8 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`IDUSUARIO`, `USERNAME`, `PASSW`, `NOMBRE`, `APELLIDOS`, `CORREO`, `ROL`, `ESTADO`) VALUES
 (1, 'malive', '81dc9bdb52d04dc20036dbd8313ed055', 'david', 'r', '11', 'admin', 'si'),
-(2, 'japan', '81dc9bdb52d04dc20036dbd8313ed055', 'j', 'jjjjjjjjjjjjjjjjjjj', '113@gmail.com', 'user', 'si');
+(2, 'japan', '81dc9bdb52d04dc20036dbd8313ed055', 'j', 'fsdf', '113@gmail.com', 'user', 'no'),
+(3, 'merineitor', '81dc9bdb52d04dc20036dbd8313ed055', 'merino', 'm', 'merino@gmail.com', 'user', 'si');
 
 --
 -- Índices para tablas volcadas
@@ -175,22 +210,22 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `lineapedido`
 --
 ALTER TABLE `lineapedido`
-  MODIFY `IDLINEAPEDIDO` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDLINEAPEDIDO` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `IDPEDIDO` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `IDPEDIDO` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `IDPRODUCTO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `IDPRODUCTO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `IDUSUARIO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `IDUSUARIO` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Restricciones para tablas volcadas
 --

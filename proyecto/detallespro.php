@@ -139,7 +139,39 @@
 
             ?>
               <?php if ($_SESSION["rol"]=="user") : ?>
-                <li><a href="#" id="cesta"><span class="glyphicon glyphicon-shopping-cart"></span><p style="float:right; margin-left:10px"> </p> </a></li>
+
+                <li><a href="vercesta.php"><span class="glyphicon glyphicon-shopping-cart"></span><p id="cesta"style="float:right; margin-left:10px">
+
+                  <?php
+
+                  $usu = $_SESSION["user"];
+
+                  $connection = new mysqli("localhost", "root", "", "muebles");
+                  //TESTING IF THE CONNECTION WAS RIGHT
+                  if ($connection->connect_errno) {
+                      printf("Connection failed: %s\n", $connection->connect_error);
+                      exit();
+                  }
+
+                    //$idusu;
+                    $consultausu = " SELECT *  FROM USUARIO WHERE USERNAME = '$usu'";
+
+                    if($result=$connection->query($consultausu)){
+                      while($f=$result->fetch_object()){
+                        $idusu=$f->IDUSUARIO;
+                      }
+                    }
+
+                    $consultacant ="SELECT sum(cantidad) as total  FROM CESTA WHERE IDUSUARIO = $idusu ;";
+                    if($result=$connection->query($consultacant)){
+                      while($f=$result->fetch_object()){
+                        $cant=$f->total;
+                      }
+                    }
+                      echo $cant;
+                   ?>
+
+                 </p> </a></li>
 
               <?php else: ?>
 
@@ -170,7 +202,7 @@
           }
           //MAKING A SELECT QUERY
           //Password coded with md5 at the database. Look for better options
-          $consulta="SELECT * FROM producto WHERE IDPRODUCTO = $id;";
+          $consulta="SELECT * FROM PRODUCTO WHERE IDPRODUCTO = $id;";
           //Test if the query was correct
           //SQL Injection Possible
           //Check http://php.net/manual/es/mysqli.prepare.php for more security
@@ -218,7 +250,7 @@
                  </tr>
 
                  <tr>
-              <button  class="btn btn-danger" onclick="insertarProductoCesta("'.$f->IDPRODUCTO.'")" >Añadir cesta</button>
+              <button  class="btn btn-danger" onclick="insertarProductoCesta('.$f->IDPRODUCTO.')" >Añadir cesta</button>
 
                  </tr>';
 
