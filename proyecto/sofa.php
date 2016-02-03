@@ -47,7 +47,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="sofa.php">SOFÁS</a></li>
+        <li class="active"><a  href="sofa.php">SOFÁS</a></li>
         <li><a href="dormitorio.php">DORMITORIOS</a></li>
         <li><a href="salon.php">SALÓN</a></li>
         <li><a href="cocina.php">COCINA</a></li>
