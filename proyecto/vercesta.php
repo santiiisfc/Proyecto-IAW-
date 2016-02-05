@@ -6,14 +6,13 @@ session_start();
 <html lang="en">
 
 <head>
-  <title>Bootstrap Example</title>
+  <title>Muebles Eli</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="./javascript/borrarcesta.js"></script>
-
   <style>
 
   .navbar {
@@ -23,23 +22,71 @@ session_start();
 
   .jumbotron {
     margin-bottom: 0;
+    background-color:#b69b87; 
   }
 
   footer {
-    background-color: #f2f2f2;
+    background-color: #3c393a;
+    color: #b69b87;
     padding: 25px;
   }
 
-  </style>
+  h1{
+    background-color:#b69b87; 
+    padding-left: 20px;
+    color:white;
+
+  }
+  a{
+    color: #ece7e1;
+
+  }
+  a:hover{
+   color: #FFFFFF;
+   
+
+ }
+
+ .social{
+
+  margin-bottom: 10px;
+
+}
+.social:hover{
+  text-decoration: none;
+}
+
+li{
+
+  color: #ece7e1;
+
+}
+
+#header{
+  background-image: url("./imagenes/b.PNG");
+}
 
 
+@font-face {
+  font-family: 'a';
+  src: url('c.ttf');
+
+}
+
+p{
+  font-family: 'a',sans-serif;
+  color:white;
+  font-size: 50px;
+}
+
+</style>
 </head>
 
 <body>
 
-  <div class="jumbotron">
+  <div class="jumbotron" id="header">
     <div class="container text-center">
-      <h1>MUEBLES ELI</h1>
+      <p>japon mamon saluda a la aficion</p>
     </div>
   </div>
 
@@ -51,7 +98,7 @@ session_start();
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>                        
         </button>
-        <a class="navbar-brand" href="main.php">
+        <a class="navbar-brand" href="#">
           <span class="glyphicon glyphicon-home"></span>
         </a>
       </div>
@@ -73,12 +120,12 @@ session_start();
             <form id="signin" class="navbar-form navbar-right" role="form" method="POST">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input id="user" type="text" class="form-control" name="user" value="" placeholder="Usuario">
+                <input id="user" type="text" class="form-control" name="user" value="" size="15" placeholder="Usuario">
               </div>
 
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input id="password" type="password" class="form-control" name="password" value="" placeholder="Contraseña">
+                <input id="password" type="password" class="form-control" name="password" value="" size="15" placeholder="Contraseña">
               </div>
 
               <button type="submit" class="btn btn-primary">Login</button>
@@ -94,6 +141,7 @@ session_start();
                 printf("Connection failed: %s\n", $connection->connect_error);
                 exit();
               }
+
               $consulta="select * from usuario where
               username='".$_POST["user"]."' and passw=md5('".$_POST["password"]."');";
 
@@ -146,9 +194,8 @@ session_start();
           ?>
           <?php if ($_SESSION["rol"]=="user") : ?>
           <li>
-            <a href="#">
-              <span class="glyphicon glyphicon-shopping-cart"></span>
-
+            <a href="vercesta.php">
+              <span class="glyphicon glyphicon-shopping-cart"></span> 
               <p id="cesta"style="float:right; margin-left:10px">
 
                 <?php
@@ -239,7 +286,7 @@ session_start();
 
 
          }
-         echo '<form action="#" method="post"><input type="hidden" id="idpro" name="idpro" value="'.$id.'"> <button type="submit" id="enviar" class="btn btn-primary" >COMPRAR</button></form>';
+         echo '<tr><td><form action="#" method="post"><input type="hidden" id="idpro" name="idpro" value="'.$id.'"> <button type="submit" id="enviar" class="btn btn-primary" >COMPRAR</button></form></td></tr>';
 
 
        }

@@ -31,12 +31,12 @@ session_start();
     padding: 25px;
   }
 
-h1{
-      background-color:#b69b87; 
-      padding-left: 20px;
-      color:white;
+  h1{
+    background-color:#b69b87; 
+    padding-left: 20px;
+    color:white;
 
-}
+  }
   a{
     color: #ece7e1;
 
@@ -69,7 +69,7 @@ li{
 
 @font-face {
   font-family: 'a';
-      src: url('c.ttf');
+  src: url('c.ttf');
 
 }
 
@@ -194,7 +194,7 @@ p{
           ?>
           <?php if ($_SESSION["rol"]=="user") : ?>
           <li>
-            <a href="#">
+            <a href="vercesta.php">
               <span class="glyphicon glyphicon-shopping-cart"></span> 
               <p id="cesta"style="float:right; margin-left:10px">
 
@@ -242,7 +242,7 @@ p{
 <div class="container">
   <div class="row">
 
-<h1 >OFERTAS</h1>
+    <h1 >OFERTAS</h1>
 
 
 
@@ -254,7 +254,7 @@ p{
       exit();
     }
 
-    $consulta="select * from producto limit 5;";
+    $consulta="SELECT * FROM PRODUCTO WHERE PRECIO_DESCUENTO > 1;";
 
     if ($result = $connection->query($consulta)) {
       if ($result->num_rows===0) {
