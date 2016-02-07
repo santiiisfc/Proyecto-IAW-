@@ -31,10 +31,18 @@ session_start();
     padding: 25px;
   }
 
-  h1{
+  #titulo{
     background-color:#b69b87; 
     padding-left: 20px;
     color:white;
+    font-family: 'a',sans-serif;
+    margin-left:15px;
+    margin-right:15px;
+
+  }
+  #nombre{
+    color:white;
+    font-family: 'a',sans-serif;
 
   }
   a{
@@ -69,24 +77,20 @@ li{
 
 @font-face {
   font-family: 'a';
-  src: url('c.ttf');
+  src: url('./css/a.ttf');
 
 }
 
-p{
-  font-family: 'a',sans-serif;
-  color:white;
-  font-size: 50px;
-}
+
 
 </style>
 </head>
 
-<body>
+<body style="background-color:#f7f5f5;">
 
   <div class="jumbotron" id="header">
     <div class="container text-center">
-      <p>japon mamon saluda a la aficion</p>
+      <h1 id="nombre">ELI ´S DECORA</h1>
     </div>
   </div>
 
@@ -104,7 +108,7 @@ p{
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li><a href="#">SOFÁS</a></li>
+          <li class="active"><a href="#">SOFÁS</a></li>
           <li><a href="dormitorio.php">DORMITORIOS</a></li>
           <li><a href="salon.php">SALÓN</a></li>
           <li><a href="cocina.php">COCINA</a></li>
@@ -239,63 +243,49 @@ p{
 </div>
 </nav>
 
-<div class="container">
-  <div class="col-sm-12">
+<div class="container" style="background-color:#e0f4f3; margin-bottom:30px;">
+  <div class="row">
 
 
+    <?php
+
+    $connection = new mysqli("localhost", "root", "", "muebles");
+    if ($connection->connect_errno) {
+      printf("Connection failed: %s\n", $connection->connect_error);
+      exit();
+    }
+
+    $consulta="SELECT * FROM PRODUCTO WHERE TIPO = 'sofa';";
+
+    if ($result = $connection->query($consulta)) {
+      if ($result->num_rows===0) {
+      } else {
+        while($f=$result->fetch_object()){
 
 
+          echo '<div class="col-sm-4">
+          <div class="panel" style="background-color:#b69b87; margin-bottom:20px; margin-top:20px;  color:white;">
+          <div class="panel-heading" >'.$f->NOMBRE.'</div>
+          <div class="panel-body"><img src="'.$f->IMAGEN.'" class="img-responsive" style="width:100%" ></div>
+          <form action="./detallespro.php" method="post"><input type="hidden" id="idpro" name="idpro" value="'.$f->IDPRODUCTO.'"> <div class="panel-footer" style="background-color:#f7f5f5;"><button type="submit" class="btn" style="background-color:#41c1c2; color:white;" ><span class="glyphicon glyphicon-shopping-cart white"></span> '.$f->PRECIO_DESCUENTO.' €</button></form>
+          </div>
+          </div>
+          </div>';
 
 
-   <?php
-
-   $connection = new mysqli("localhost", "root", "", "muebles");
-   if ($connection->connect_errno) {
-    printf("Connection failed: %s\n", $connection->connect_error);
-    exit();
-  }
-
-  $consulta="SELECT * FROM PRODUCTO WHERE TIPO ='sofa';";
-
-  if ($result = $connection->query($consulta)) {
-    if ($result->num_rows===0) {
-    } else {
-      while($f=$result->fetch_object()){
-
-
-
-        echo '<div class="col-sm-4">
-        <div class="panel panel-primary">
-        <div class="panel-heading">'.$f->NOMBRE.'</div>
-        <div class="panel-body"> <img src="'.$f->IMAGEN.'" class="img-responsive" style="width:100%" alt="Image"> </div>
-        <form action="./detallespro.php" method="post"><input type="hidden" id="idpro" name="idpro" value="'.$f->IDPRODUCTO.'"> <div class="panel-footer"><button type="submit" class="btn btn-danger" ><span class="glyphicon glyphicon-shopping-cart white"></span> '.$f->PRECIO.'€</button></form>
-
-        </div>
-
-        </div>
-        </div>';
+        }
 
       }
-
     }
-  }
 
-  ?>
+    ?>
 
-
-
-
-
-
-
-
+  </div>
 </div>
-</div>
-
 
 <?php
 include'./footer.php';
 ?>
-
 </body>
+
 </html>

@@ -31,10 +31,18 @@ session_start();
     padding: 25px;
   }
 
-  h1{
+  #titulo{
     background-color:#b69b87; 
     padding-left: 20px;
     color:white;
+    font-family: 'a',sans-serif;
+    margin-left:15px;
+    margin-right:15px;
+
+  }
+  #nombre{
+    color:white;
+    font-family: 'a',sans-serif;
 
   }
   a{
@@ -69,24 +77,20 @@ li{
 
 @font-face {
   font-family: 'a';
-  src: url('c.ttf');
+  src: url('./css/a.ttf');
 
 }
 
-p{
-  font-family: 'a',sans-serif;
-  color:white;
-  font-size: 50px;
-}
+
 
 </style>
 </head>
 
-<body>
+<body style="background-color:#f7f5f5;">
 
   <div class="jumbotron" id="header">
     <div class="container text-center">
-      <p>japon mamon saluda a la aficion</p>
+      <h1 id="nombre">ELI ´S DECORA</h1>
     </div>
   </div>
 
@@ -239,10 +243,10 @@ p{
 </div>
 </nav>
 
-<div class="container">
+<div class="container" style="background-color:#e0f4f3; margin-bottom:30px;">
   <div class="row">
 
-    <h1 >OFERTAS</h1>
+    <h1 id="titulo">OFERTAS</h1>
 
 
 
@@ -254,7 +258,7 @@ p{
       exit();
     }
 
-    $consulta="SELECT * FROM PRODUCTO WHERE PRECIO_DESCUENTO > 1;";
+    $consulta="SELECT * FROM PRODUCTO WHERE PRECIO_DESCUENTO >= 1;";
 
     if ($result = $connection->query($consulta)) {
       if ($result->num_rows===0) {
@@ -263,10 +267,11 @@ p{
 
 
           echo '<div class="col-sm-4">
-          <div class="panel panel-primary">
-          <div class="panel-heading">'.$f->NOMBRE.'</div>
-          <div class="panel-body"><img src="'.$f->IMAGEN.'" class="img-responsive" style="width:100%" alt="Image"></div>
-          <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
+          <div class="panel" style="background-color:#b69b87; margin-bottom:20px; margin-top:20px; color:white;">
+          <div class="panel-heading" >'.$f->NOMBRE.'</div>
+          <div class="panel-body"><img src="'.$f->IMAGEN.'" class="img-responsive" style="width:100%" ></div>
+          <form action="./detallespro.php" method="post"><input type="hidden" id="idpro" name="idpro" value="'.$f->IDPRODUCTO.'"> <div class="panel-footer" style="background-color:#f7f5f5;"><button type="submit" class="btn" style="background-color:#41c1c2; color:white;" ><span class="glyphicon glyphicon-shopping-cart white"></span> '.$f->PRECIO_DESCUENTO.' €</button></form>
+          </div>
           </div>
           </div>';
 

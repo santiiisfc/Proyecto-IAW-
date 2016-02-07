@@ -13,6 +13,8 @@ session_start();
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="./javascript/borrarcesta.js"></script>
+
   <style>
 
   .navbar {
@@ -31,10 +33,18 @@ session_start();
     padding: 25px;
   }
 
-  h1{
+  #titulo{
     background-color:#b69b87; 
     padding-left: 20px;
     color:white;
+    font-family: 'a',sans-serif;
+    margin-left:15px;
+    margin-right:15px;
+
+  }
+  #nombre{
+    color:white;
+    font-family: 'a',sans-serif;
 
   }
   a{
@@ -69,24 +79,20 @@ li{
 
 @font-face {
   font-family: 'a';
-  src: url('c.ttf');
+  src: url('./css/a.ttf');
 
 }
 
-p{
-  font-family: 'a',sans-serif;
-  color:white;
-  font-size: 50px;
-}
+
 
 </style>
 </head>
 
-<body>
+<body style="background-color:#f7f5f5;">
 
   <div class="jumbotron" id="header">
     <div class="container text-center">
-      <p>japon mamon saluda a la aficion</p>
+      <h1 id="nombre">ELI ´S DECORA</h1>
     </div>
   </div>
 
@@ -98,7 +104,7 @@ p{
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>                        
         </button>
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="main.php">
           <span class="glyphicon glyphicon-home"></span>
         </a>
       </div>
@@ -240,15 +246,15 @@ p{
 </nav>
 
 <div class="container">
-  <div class="col-sm-12" id="dios">
+  <div class="col-sm-12" id="dios" style="margin-bottom:450px;">
 
-    <table class="table-bordered table-striped col-md-12" >
+    <table class="table-bordered table-striped col-md-12">
 
      <thead>
        <tr>
-         <th>NOMBRE</th>
-         <th>PRECIO</th>
-         <th>CANTIDAD</th>
+         <th style="text-align:center;">NOMBRE</th>
+         <th style="text-align:center;">PRECIO</th>
+         <th style="text-align:center;">CANTIDAD</th>
        </thead>
 
 

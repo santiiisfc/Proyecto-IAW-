@@ -1,0 +1,227 @@
+Blanco – novotex aluminio – Tirador tetris
+Cantidad	Código	Descripcion
+1		E1172	Armario curvo recto izquierdo 218 x 134,4
+1		E1181	Armario terminal rinconera derecho puerta lisa de 218
+1		E4004	Mesita 2 cajones con ruedas 45,4
+1		E5019	Arcón lateral de 32
+1		E5036	Pata metálica cuadrada 49 x 71,5
+1		E5077	Encimera decreciente de 206
+1		E6085	Estantería abierta
+1		E6007	Cubo de colgar
+1		E6009	Módulo para colgar 103
+1		E7250	Compacto Basic largueros para nidos brazo arcón izquierdo 190 x 90 con nido oculto con ruedas 180 x 90 + módulo 3 contenedores
+
+
+
+Fresno – lago – Tirador cuadro
+Cantidad	Código	Descripcion
+1		E1212	Armario 2 puertas 3 paneles 218 x 100,2
+1		E5004	Bajo mesa 2 cajones 45,2
+1		E5032	Costado mesa estudio lateral 48,9 x 25 x 71,5
+1		E5045	Encimera recta de 151
+1		E6083	Diáfano 151
+1		E7248	Compacto Basic largueros para nidos 190 x 90 con nido oculto con ruedas 180 x 90 + módulo 3 contenedores
+
+
+
+Blanco – rosa – Tirador redondo
+Cantidad	Código	Descripcion
+1		E1065	Armario 3 puertas sinfonier 218 x 149,8
+1		E5020	Arcón lateral de 49
+1		E5036	Pata metálica cuadrada 49 x 71,5
+1		E5049	Encimera recta de 206
+1		E6001	Diáfano abierto de 67
+1		E6012	Módulo de 1 puerta para colgar 103
+1		E7226	Compacto Basic largueros para nidos brazo arcón izquierdo 190 x 90 con nido con ruedas 180 x 90 + 2 cajones con ruedas
+
+
+
+Acero – gris – pizarra – Tirador tetris
+Cantidad	Código	Descripcion
+1		E1037	Armario 3 puertas lisas 218 x 150
+1		E4004	Mesita 2 cajones con ruedas 45,4
+1		E5032	Costado mesa estudio lateral 48,9 x 25 x 71,5
+1		E5034	Costado mesa estudio central 47 x 50 x 71,5
+1		E5038	Soporte para encimera metálico escuadra
+1		E5095	Encimera angular de 206 x 122
+1		E6009	Módulo para colgar 103
+1		E6012	Módulo de 1 puerta para colgar 103
+1		E7250	Compacto Basic largueros para nidos brazo arcón izquierdo 190 x 90 con nido oculto con ruedas 180 x 90 + módulo 3 contenedores
+
+
+Blanco – acero – lago – Tirador redondo
+Cantidad	Código	Descripcion
+1		E1172	Armario curvo recto izquierdo 218 x 134,4
+1		E1181	Armario terminal rinconera derecho puerta lisa de 218
+1		E5019	Arcón lateral de 32
+1		E5038	Soporte para encimera metálico escuadra
+1		E5077	Encimera decreciente de 206
+1		E6001	Diáfano abierto de 67
+1		E6002	Diáfano abierto de 103
+1		E7213	Compacto Basic largueros brazo arcón derecho 190 x 90 con módulo 3 contenedores + 2 cajones con ruedas
+
+
+Blanco – aqua – novotex aluminio – Tirador tetris
+Cantidad	Código	Descripcion
+1		E1212	Armario 2 puertas 3 paneles 218 x 100,2
+1		E5020	Arcón lateral de 49
+1		E5038	Soporte para encimera metálico Escuadra
+1		E5049	Encimera recta de 206
+1		E6085	Estantería abierta
+1		E6007	Cubo de colgar
+1		E6012	Módulo de 1 puerta para colgar 103
+1		E7207	Compacto Basic largueros brazo arcón derecho 190 x 90 con módulo 3 contenedores + somier de arrastre
+
+
+
+Fresno – lago – verde – capuchino – Tirador redondo
+Cantidad	Código	Descripcion
+1		E4020	Sinfonier 6 cajones con ruedas 45,4
+1		E5019	Arcón lateral de 32
+1		E5031	Pie de mesa cuadrado
+1		E5078	Encimera decreciente de 220,5
+1		E6085	Estantería abierta
+1		E6007	Cubo de colgar
+1		E7244	Compacto Basic largueros para nidos brazo arcón izquierdo 190 x 90 con nido oculto con ruedas 180 x 90 + 2 cajones con ruedas
+
+
+
+Fresno – rosa – novotex aluminio – Tirador cuadro
+Cantidad	Código	Descripcion
+1		E1244	Armario 2 puertas 3 paneles correderas 218 x 119,4
+1		E5020	Arcón lateral de 49
+1		E5038	Soporte para encimera metálico escuadra
+1		E5049	Encimera recta de 206
+2		E6001	Diáfano abierto de 67
+2		E6007	Cubo de colgar
+1		E7207	Compacto Basic largueros brazo arcón derecho 190 x 90 con módulo 3 contenedores + somier de arrastre
+
+
+
+Fresno – fucsia – Tirador redondo
+Cantidad	Código	Descripcion
+1		E1172	Armario curvo recto izquierdo 218 x 134,4
+1		E5010	Bajo mesa 4 cajones 45,2
+1		E5038	Soporte para encimera metálico escuadra
+1		E5045	Encimera recta de 151
+1		E6007	Cubo de colgar
+1		E6009	Módulo para colgar 103
+1		E7251	Compacto Basic largueros para nidos corona 190 x 90 con nido oculto con ruedas 180 x 90 + módulo 3 contenedores
+
+
+
+Fresno – gris – pizarra – Tirador tetris
+Cantidad	Código	Descripcion
+1		E1065	Armario 3 puertas sinfonier 218 x 149,8
+1		E5020	Arcón lateral de 49
+1		E5038	Soporte para encimera metálico escuadra
+1		E5049	Encimera recta de 206
+3		E6007	Cubo de colgar
+1		E7249	Compacto Basic largueros para nidos brazo arcón derecho 190 x 90 con nido oculto con ruedas 180 x 90 + módulo 3 contenedores
+
+
+
+
+
+
+Dormitorio matrimonio bicolor 
+Cantidad	Código	Descripcion
+1		MT9329	Cabezal Venecia 285 x 100?
+1		MT9028	Bancada bicolor base somier elevable 150 x 190?
+2		MT4018	Mesita K-19 2 cajones altura bancada 55,5?
+2		MT4094	Comodín K-19 3 cajones + 1 baúl frente lacado 100,4?
+1 		MT6042 	Marco rectangular con marco lacado? 
+
+
+Dormitorio matrimonio? color blanco 
+Cantidad	Código	Descripcion
+1		MT9330?	Cabezal Venecia 305 x 100?
+1		MT9065?	Bancada chaflán base 150 x 190? 
+2		MT4016? 	Mesita 2 cajones frentes lacados 65,5 K-19? 
+1 		MT2021L? 	Armario 5 puertas lisas lacadas 240*222,3 ancho? 
+
+
+
+Dormitorio matrimonio? con muebles lacados 
+Cantidad	Código	Descripcion
+1		MT9321?	Cabezal Roma base 284 x 100?
+1		MT9005? 	Bancada Curva 150 x 190? 
+2		MT4089?	Tarima de 1 cajón 75,5? 
+1		MT4041? 	Mesita 4 cajones frentes lacados 30,5 K-19?
+1		MT4088?	Complemento 1 cajón todo lacado 60? 
+
+
+Dormitorio matrimonio? blanco lacado 
+Cantidad	Código	Descripcion
+1		MT9324?	Cabezal Roma Lacado 284*100? 
+1		MT9101?	Bancada volada lacada 150*190? 
+2		MT4015?	Mesita 2 cajones frentes lacados 55'5 K19? 
+
+
+Dormitorio matrimonio? blanco lacado y madera
+Cantidad	Código	Descripcion
+ 1	MT9321? 	Cabezal Roma Base 284*100? 
+ 1	 MT9089?	Bancada Volada Base 150*190? 
+ 2	 MT4011?	Mesita 2 cajones 55'5 K19? 
+ 3	 MT6018?	Leja 100*25 (soporte oculto)? 
+ 	 MT6002?	Encimera 120? 
+ 1	MT6006?	Costado de Mesa? 
+ 1	 MT6007?	 Modulo 3 cajones + 1contenedor 45'5?
+
+
+
+Dormitorio matrimonio? bancada lacada 
+Cantidad	Código	Descripcion
+ 1	 MT9303?	Cabezal Luxor 304*100? 
+ 	 	Incremento plafón lacado cabecero? 
+ 	 	 Incremento plafón lacado ala?
+ 1	 MT9077?	Bancada Chaflan Lacada 150*190? 
+ 2	 MT4028?	 Mesita 1 contenedor altura bancada frente lacado 65'5 K19?
+ 2	MT4094?	 Comodín 3caj + 1baúl frente lacado 100'4 K19?
+ 1	 MT6040?	 Marco Rectangular?
+
+
+
+Dormitorio matrimonio?
+Cantidad	Código	Descripcion
+ 1	 MT9301?	 Cabezal Luxor 284*100?
+ 1	 MT9065?	 Bancada Chaflan Base 150*190?
+2	 MT4015?	Mesita 2caj frente lacado 55'5 K19? 
+ 1	 MT6007?	Modulo 3caj + 1cont 45'5? 
+ 1	 MT6006?	Costado de Mesa? 
+ 1	 MT6053?	 Sinfonier 5 cajones + 1 contenedor 45'5?
+ 1	 MT6004?	Encimera 170? 
+2	 MT6016?	 Módulo 1 puerta?
+2	 MT6014?	 Módulo Estantes?
+
+
+
+Dormitorio matrimonio? Glicerio Chaves Hornero
+Colores
+Cantidad	Código	Descripcion
+ 1	MT9301? 	 Cabezal Luxor 284 x 100?
+ 	 	 Incremento plafón ala ?
+ 	 	 Incremento plafón cabecero?
+1	 MT9101?	 Bancada volada lacada 150 x 190?
+2 	 MT4015?	 Mesita 2 cajones frentes lacados 55,5 K-19
+
+
+Dormitorio matrimonio?. Glicerio Chaves Hornero.
+Colores
+Cantidad	Código	Descripcion
+ 1	 MT9318?	Cabezal Atenas 289*100? 
+ 1	 MT9017?	 Bancada Bicolor Base 150*190?
+ 1	 MT4100?	 Mesita 1 contenedor derecha 55'5 Vertical?
+ 1	 MT4104?	Mesita 1 contenedor izquierda 55'5 Vertical? 
+ 1	 MT4149?	Sinfonier 7 cajones derecho 65'5 Vertical? 
+
+
+
+Dormitorio matrimonio?. 
+Colores
+Cantidad	Código	Descripcion
+ 1	 MT9318?	 Cabezal Atenas 289 x 100?
+ 1	 MT9065?	 Bancada chaflán base 150 x 190?
+ 2	 MT4018?	Mesita 2 cajones altura bancada 55,5 K-19 
+ 1	 MT4080?	 Sinfonier 7 cajones 65,5 K-19?
+ 1	MT4082? 	 Sinfonier 7 cajones frentes lacados 65,5 K-19

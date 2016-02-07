@@ -14,7 +14,6 @@ session_start();
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <script src="./javascript/aniadircesta.js"></script>
-  <script src="./javascript/borrarcesta.js"></script>
   <style>
 
   .navbar {
@@ -33,10 +32,18 @@ session_start();
     padding: 25px;
   }
 
-  h1{
+  #titulo{
     background-color:#b69b87; 
     padding-left: 20px;
     color:white;
+    font-family: 'a',sans-serif;
+    margin-left:15px;
+    margin-right:15px;
+
+  }
+  #nombre{
+    color:white;
+    font-family: 'a',sans-serif;
 
   }
   a{
@@ -80,11 +87,11 @@ li{
 </style>
 </head>
 
-<body>
+<body style="background-color:#f7f5f5;">
 
   <div class="jumbotron" id="header">
     <div class="container text-center">
-      <p>japon mamon saluda a la aficion</p>
+      <h1 id="nombre">ELI ´S DECORA</h1>
     </div>
   </div>
 
@@ -237,86 +244,79 @@ li{
 </div>
 </nav>
 
-<div class="container">
-  <div class="col-sm-12">
+<div class="container" style="background-color:#e0f4f3; margin-bottom:185px;">
+  <div class="row">
 
 
-   <?php
+    <?php
 
-   $id= $_POST['idpro'];
-
-
-   $connection = new mysqli("localhost", "root", "", "muebles");
-   if ($connection->connect_errno) {
-    printf("Connection failed: %s\n", $connection->connect_error);
-    exit();
-  }
-
-  $consulta="SELECT * FROM PRODUCTO WHERE IDPRODUCTO = $id;";
-
-  if ($result = $connection->query($consulta)) {
-    if ($result->num_rows===0) {
-    } else {
-      while($f=$result->fetch_object()){
+    $id= $_POST['idpro'];
 
 
-        echo '
+    $connection = new mysqli("localhost", "root", "", "muebles");
+    if ($connection->connect_errno) {
+      printf("Connection failed: %s\n", $connection->connect_error);
+      exit();
+    }
 
-        <div style="float:left;">
-        <img src='.$f->IMAGEN.' height="50%" width="50%">
-        </div>
+    $consulta="SELECT * FROM PRODUCTO WHERE IDPRODUCTO = $id;";
 
-        <div>
-        <table>
-        <tr>
-        <td><h1>'.$f->NOMBRE.'</h1></td>
-        </tr>
+    if ($result = $connection->query($consulta)) {
+      if ($result->num_rows===0) {
+      } else {
+        while($f=$result->fetch_object()){
 
-        <tr>
-        <td><h4>'.$f->COLOR.'</h4></td>
-        </tr>
 
-        <tr>
-        <td><h4>'.$f->ANCHO.' x '.$f->ALTO.' x '.$f->PROFUNDO.' cm</h4></td>
-        </tr>
+          echo '
 
-        <tr>
-        <td><h3>'.$f->PRECIO_DESCUENTO.' €</h3></td>
-        </tr>
+          <div class="col-md-6" style="float:left; padding:50px">
+          <img src='.$f->IMAGEN.' class="img-responsive" style="width:100%">
+          </div>
 
-        <tr>
-        <td>
-        <div>
-        <button  class="btn btn-danger" onclick="insertarProductoCesta('.$f->IDPRODUCTO.')" >Añadir cesta</button>
-        </div>
-        </br>
-        </td>
-        </tr>
+          <div style="float:left; margin:50px">
+          <table>
+          <tr>
+          <td><h1>'.$f->NOMBRE.'</h1></td>
+          </tr>
 
-        </table>
-        </div>';
+          <tr>
+          <td><h4>'.$f->COLOR.'</h4></td>
+          </tr>
 
+          <tr>
+          <td><h4>'.$f->ANCHO.' x '.$f->ALTO.' x '.$f->PROFUNDO.' cm</h4></td>
+          </tr>
+
+          <tr>
+          <td><h3>'.$f->PRECIO_DESCUENTO.' €</h3></td>
+          </tr>
+
+          <tr>
+          <td>
+          <div>
+          <button  class="btn btn-danger" onclick="insertarProductoCesta('.$f->IDPRODUCTO.')" >Añadir cesta</button>
+          </div>
+          </br>
+          </td>
+          </tr>
+
+          </table>
+          </div>';
+
+
+        }
 
       }
-
     }
-  }
 
-  ?>
+    ?>
 
-
-
-
-
-
-
+  </div>
 </div>
-</div>
-
 
 <?php
 include'./footer.php';
 ?>
-
 </body>
+
 </html>

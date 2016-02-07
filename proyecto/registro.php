@@ -32,10 +32,18 @@ session_start();
     padding: 25px;
   }
 
-  h1{
+  #titulo{
     background-color:#b69b87; 
     padding-left: 20px;
     color:white;
+    font-family: 'a',sans-serif;
+    margin-left:15px;
+    margin-right:15px;
+
+  }
+  #nombre{
+    color:white;
+    font-family: 'a',sans-serif;
 
   }
   a{
@@ -70,24 +78,24 @@ li{
 
 @font-face {
   font-family: 'a';
-  src: url('c.ttf');
+  src: url('./css/a.ttf');
 
 }
 
-p{
-  font-family: 'a',sans-serif;
-  color:white;
-  font-size: 50px;
-}
+
 
 </style>
 </head>
 
-<body>
+<body style="background-color:#f7f5f5;">
 
   <div class="jumbotron" id="header">
     <div class="container text-center">
-      <p>japon mamon saluda a la aficion</p>
+      <h1 id="nombre">ELI ´S DECORA</h1>
+      <div class="alert alert-danger hidden" style="width:80%;margin: 0 auto;position:relative;top:-20px;height:60px;" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong id="alert_msg">¡¡Ya existe un usuario con ese correo o nombre de usuario!!</strong>
+      </div>
     </div>
   </div>
 
@@ -120,92 +128,74 @@ p{
 
 
 
-
-  <div class="container">
+  <div class="container" style="background-color:#e0f4f3; margin-bottom:200px;">
     <div class="row centered-form">
-      <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8">
-       <div class="panel panel-default">
-        <div class="panel-heading">
-         <h3 class="panel-title">Datos personales</h3>
-       </div>
 
-       <div class="panel-body">
-         <form role="form" method="post" action="#">
-          <div class="row">
+     <form style="padding-bottom:30px;" role="form" method="post" action="#">
 
-            <div class="col-xs-6 col-sm-6 col-md-1">
-              <div class="form-group">
-               <span class="fa fa-user">
-               </div>
-             </div>
+      <div>
+        <h2 id="titulo">DATOS PERSONALES</h2>
+      </div>
 
-             <div class="col-xs-6 col-sm-6 col-md-4">
-              <div class="form-group">
-               <input type="text" name="nombre" id="nombre" class="form-control input-sm" placeholder="Nombre">
-             </div>
-           </div>
-
-           <div class="col-xs-6 col-sm-6 col-md-1">
-            <div class="form-group">
-             <span class="fa fa-user">
-             </div>
-           </div>
-
-           <div class="col-xs-6 col-sm-6 col-md-4">
-            <div class="form-group">
-              <input type="text" name="apellidos" id="apellidos" class="form-control input-sm" placeholder="Apellidos">
-            </div>
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+          <div class="form-group">
+            <label>NOMBRE </label>
+            <input type="text" name="nom" id="nom" class="form-control input-sm" placeholder="Nombre">
           </div>
-        </div>
-
-        <div class="row">
-         <div class="col-xs-6 col-sm-6 col-md-1">
-          <div class="form-group">
-           <span class="fa fa-envelope">
-           </div>
-         </div>
-
-         <div class="col-xs-6 col-sm-6 col-md-4">
-          <div class="form-group">
-           <input type="email" name="correo" id="correo" class="form-control input-sm" placeholder="Correo electrónico">
-         </div>
-       </div>
-
-       <div class="col-xs-6 col-sm-6 col-md-1">
-        <div class="form-group">
-         <span class="fa fa-user">
-         </div>
-       </div>
-
-       <div class="col-xs-6 col-sm-6 col-md-4">
-        <div class="form-group">
-          <input type="text" name="username" id="username" class="form-control input-sm" placeholder="Nombre usuario">
         </div>
       </div>
 
-    </div>
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+          <div class="form-group">
+            <label>APELLIDOS </label>
+            <input type="text" name="apellidos" id="apellidos" class="form-control input-sm" placeholder="Apellidos">
+          </div>
+        </div>
+      </div>
 
-    <div class="row">
-      <div class="col-xs-6 col-sm-6 col-md-1">
-        <div class="form-group">
-         <span class="fa fa-key">
-         </div>
-       </div>
-       <div class="col-xs-6 col-sm-6 col-md-4">
-        <div class="form-group">
-         <input type="password" name="passw" id="passw" class="form-control input-sm" placeholder="Contraseña">
-       </div>
-     </div>
-   </div>
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+          <div class="form-group">
+            <label>CORREO ELECTRÓNICO </label>
+            <input type="email" name="correo" id="correo" class="form-control input-sm" placeholder="Correo electrónico">
+          </div>
+        </div>
+      </div>
 
-   <input type="submit" value="Registrarse" class="btn btn-primary col-sm-offset-10">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+          <div class="form-group">
+            <label>USUARIO </label>
+            <input type="text" name="username" id="username" class="form-control input-sm" placeholder="Nombre usuario">
+          </div>
+        </div>
+      </div>
 
- </form>
-</div>
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+          <div class="form-group">
+            <label>CONTRASEÑA </label>
+            <input type="password" name="passw" id="passw" class="form-control input-sm" placeholder="Contraseña">
+          </div>
+        </div>
+      </div>
 
-</div>
-</div>
-</div>
+
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+          <div class="form-group">
+            <input type="submit" value="Registrarse" class="btn btn-primary btn-lg btn-block">
+          </div>
+        </div>
+      </div>
+    </form>
+
+
+
+
+  </div>
 </div>
 
 
@@ -215,7 +205,7 @@ if (isset($_POST["username"])){
 
 
 
-  $nombre=$_POST["nombre"];
+  $nombre=$_POST["nom"];
   $apellidos=$_POST["apellidos"];
   $correo=$_POST["correo"];
   $username=$_POST["username"];
@@ -246,11 +236,14 @@ if (isset($_POST["username"])){
       }
 
     } else {
+      unset($connection);
+      echo '<script language="javascript">$(".alert").toggleClass("hidden").fadeIn(1000); window.setTimeout(function() {$(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();});}, 3000);</script>';
 
-    }
-  } else {
-    echo "Wrong Query";
-  }
+}
+} else {
+  echo "Wrong Query";
+}
 }
 
 

@@ -148,7 +148,7 @@
 			    		<h3 class="panel-title">Datos personales</h3>
 			 			</div>
 			 			<div class="panel-body">
-			    		<form role="form" method="post" action="#">
+			    		<form role="form" method="post" action="#" enctype="multipart/form-data">
 			    			<div class="row">
 			    			<div class="col-xs-6 col-sm-6 col-md-1">
 			    					<div class="form-group">
@@ -242,16 +242,8 @@
 			    			</div>
 
                 <div class="row">
-                 <div class="col-xs-6 col-sm-6 col-md-1">
-			    					<div class="form-group">
-			                <span class="glyphicon glyphicon-envelope">
-			    					</div>
-			    				</div>
-                  <div class="col-xs-6 col-sm-6 col-md-4">
-			    			<div class="form-group">
-			    		<input type="text" name="imagen" id="imagen"  class="form-control input-sm" placeholder="imagen">
-			    			</div>
-                </div>
+
+
                 <div class="col-xs-6 col-sm-6 col-md-1">
 			    					<div class="form-group">
 			                <span class="glyphicon glyphicon-envelope">
@@ -277,6 +269,24 @@
 			    				</div>
 			    			</div>
 
+
+
+
+
+
+                <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-4">
+                <div class="form-group">
+                      <img id="preview" src="" style="width:100px;height:100px;border:solid red 1px" />
+
+                   <input type="file" name="img" id="img" />
+                </div>
+                </div>
+              </div>
+
+
+
+
 			    			<input type="submit" value="add" class="btn btn-primary col-sm-offset-10">
 
 			    		</form>
@@ -286,6 +296,25 @@
     	</div>
     </div>
 
+<script language="javascript">
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#preview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#img").change(function(){
+      alert('entaaaa');
+        readURL(this);
+    });
+    </script>
 
 
         <?php
@@ -301,9 +330,49 @@
           $precio=$_POST["precio"];
           $descuento=$_POST["descuento"];
           $preciodescuento=$_POST["preciodescuento"];
-          $imgen=$_POST["imagen"];
+          $imgen=$_POST["img"];
           $tipo=$_POST["tipo"];
           $estado=$_POST["estado"];
+
+
+          if ($_FILES["img"]["error"] > 0){
+      echo "ha ocurrido un error";
+    } else {
+              //ahora vamos a verificar si el tipo de archivo es un tipo de imagen permitido.
+              //y que el tamano del archivo no exceda los 100kb
+              $permitidos = array("image/jpg", "image/jpeg", "image/gif", "image/png");
+              $limite_kb = 10000;
+
+              if (in_array($_FILES['img']['type'], $permitidos) && $_FILES['img']['size'] <= $limite_kb * 1024){
+                //esta es la ruta donde copiaremos la imagen
+                //recuerden que deben crear un directorio con este mismo nombre
+                //en el mismo lugar donde se encuentra el archivo subir.php
+                $ruta = "./imagenes/".$tipo."/" . $_FILES['img']['name'];
+                  
+                  $carpeta = "./imagenes/".$tipo;
+                  if (!file_exists($carpeta)) {
+                      mkdir($carpeta, 0777, true);
+                  }
+                //comprovamos si este archivo existe para no volverlo a copiar.
+                //pero si quieren pueden obviar esto si no es necesario.
+                //o pueden darle otro nombre para que no sobreescriba el actual.
+                if (!file_exists($ruta)){
+                  //aqui movemos el archivo desde la ruta temporal a nuestra ruta
+                  //usamos la variable $resultado para almacenar el resultado del proceso de mover el archivo
+                  //almacenara true o false
+                  $resultado = @move_uploaded_file($_FILES["img"]["tmp_name"], $ruta);
+                  if ($resultado){
+                    echo "el archivo ha sido movido exitosamente";
+                  } else {
+                    echo "ocurrio un error al mover el archivo.";
+                  }
+                } else {
+                  echo $_FILES['img']['name'] . ", este archivo existe";
+                }
+              } else {
+                echo "archivo no permitido, es tipo de archivo prohibido o excede el tamano de $limite_kb Kilobytes";
+              }
+      }
 
 //echo "<script type=\"text/javascript\">alert('$nombre');</script>";
 //echo "<script type=\"text/javascript\">alert('$apellidos');</script>";
@@ -326,7 +395,7 @@
           //Check http://php.net/manual/es/mysqli.prepare.php for more security
               //No rows returned
                 //echo "<script type=\"text/javascript\">alert('entra');</script>";
-                $consulta="INSERT INTO PRODUCTO VALUES(NULL,'$nombre','$color',$ancho,$alto,$profundo,$precio,$descuento,$preciodescuento,'$imagen','$tipo','$estado')";
+                $consulta="INSERT INTO PRODUCTO VALUES(NULL,'$nombre','$color',$ancho,$alto,$profundo,$precio,$descuento,$preciodescuento,'$ruta','$tipo','$estado')";
 
                 if($connection->query($consulta)){
                   //echo "<script type=\"text/javascript\">alert('entra');</script>";
