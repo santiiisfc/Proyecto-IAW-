@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 ?>
 
@@ -320,3 +321,6 @@ include'./footer.php';
 </body>
 
 </html>
+<?php
+ob_end_flush();
+?>

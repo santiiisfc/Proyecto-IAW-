@@ -5,15 +5,15 @@ $(function(){
     var sele = $("#tableusu").val();
     var uri = './php/filtrarusuario.php';
     var arraydatos = {"rol":sele,"nombre":dato};
-      $.ajax({
-          type:'POST',
-          url:uri,
-          data:arraydatos,
-          datatype:"json",
-          success:function(data){
-            $("#tablausuario").html(data);
-          }
-      });
+    $.ajax({
+      type:'POST',
+      url:uri,
+      data:arraydatos,
+      datatype:"json",
+      success:function(data){
+        $("#tablausuario").html(data);
+      }
+    });
 
   });
 
@@ -23,7 +23,7 @@ $(function(){
     var sele = $("#tableusu").val();
     var uri = './php/filtrarusuario.php';
     var arraydatos = {"rol":sele,"nombre":dato};
-  $.ajax({
+    $.ajax({
       type:'POST',
       url:uri,
       data:arraydatos,
@@ -31,6 +31,6 @@ $(function(){
       success:function(data){
         $("#tablausuario").html(data);
       }
+    });
   });
-});
 });

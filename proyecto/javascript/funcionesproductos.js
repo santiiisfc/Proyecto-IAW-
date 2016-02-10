@@ -5,15 +5,15 @@ $(function(){
     var sele = $("#tableselect").val();
     var uri = './php/filtrarproducto.php';
     var arraydatos = {"tipo":sele,"nombre":dato};
-      $.ajax({
-          type:'POST',
-          url:uri,
-          data:arraydatos,
-          datatype:"json",
-          success:function(data){
-            $("#tabla").html(data);
-          }
-      });
+    $.ajax({
+      type:'POST',
+      url:uri,
+      data:arraydatos,
+      datatype:"json",
+      success:function(data){
+        $("#tabla").html(data);
+      }
+    });
 
   });
 
@@ -23,7 +23,7 @@ $(function(){
     var sele = $("#tableselect").val();
     var uri = './php/filtrarproducto.php';
     var arraydatos = {"tipo":sele,"nombre":dato};
-  $.ajax({
+    $.ajax({
       type:'POST',
       url:uri,
       data:arraydatos,
@@ -31,6 +31,6 @@ $(function(){
       success:function(data){
         $("#tabla").html(data);
       }
+    });
   });
-});
 });

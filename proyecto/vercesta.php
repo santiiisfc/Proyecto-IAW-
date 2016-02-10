@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 ?>
 
@@ -248,7 +249,7 @@ li{
 <div class="container">
   <div class="col-sm-12" id="dios" style="margin-bottom:450px;">
 
-    <table class="table-bordered table-striped col-md-12">
+    <table class="table-bordered col-md-12">
 
      <thead>
        <tr>
@@ -409,3 +410,6 @@ include'./footer.php';
 </body>
 
 </html>
+<?php
+ob_end_flush();
+?>

@@ -308,12 +308,14 @@
 
             reader.readAsDataURL(input.files[0]);
         }
+
     }
 
     $("#img").change(function(){
       alert('entaaaa');
         readURL(this);
     });
+    
     </script>
 
 
